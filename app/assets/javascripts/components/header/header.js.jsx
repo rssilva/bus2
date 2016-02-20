@@ -8,6 +8,11 @@ var Header = React.createClass({
           </svg>
         </a>
         <h1>BUS2</h1>
+        <a href="#pin-alert" className="bus2-pin-alert">
+          <svg className="pin-alert">
+            <use xlinkHref="#pin-alert"></use>        
+          </svg>
+        </a>
       </div>
     )
   }

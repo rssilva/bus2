@@ -32,6 +32,19 @@
     left: 21px;
   }
 
+  .bus2-pin-alert {
+    width: 34px;
+    height: 34px;
+    @include align-vertically();
+    position: absolute;
+    right: 21px; 
+  }
+
+  svg.pin-alert {
+    width: 34px;
+    height: 34px;
+  }
+
   svg.menu-burger {
     width: 32px;
     height: 21px;
