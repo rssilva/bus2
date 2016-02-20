@@ -14,11 +14,12 @@ BUS2.ContributeArea = React.createClass({
     return (
       <div className="contribute-area">
         <div className="contribute-button" onClick={this.onClick} >
-        <button className="contribute-button" onClick={this.onClick} >
-          <svg className="contribute-bus">
-            <use xlinkHref="#contribute-bus"></use>
-          </svg>
-          <span className="label">Contribute</span>
+          <button className="contribute-button" onClick={this.onClick} >
+            <svg className="contribute-bus">
+              <use xlinkHref="#contribute-bus"></use>
+            </svg>
+            <span className="label">Contribute</span>
+          </button>
         </div>
       </div>
     )
