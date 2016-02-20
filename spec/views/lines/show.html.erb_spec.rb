@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe "lines/show", type: :view do
   before(:each) do
     @line = assign(:line, Line.create!(
-      :name => "Name"
+      :name => "Name",
+      :city_id => 1
     ))
   end
 
