@@ -13,6 +13,11 @@ BUS2.Header = React.createClass({
             <use xlinkHref="#pin-alert"></use>        
           </svg>
         </a>
+        <div className="bus2-triangle">
+          <svg className="triangle">
+            <use xlinkHref="#triangle"></use>        
+          </svg>
+        </div>
       </div>
     )
   }
