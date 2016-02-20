@@ -19,12 +19,12 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe LinesController, type: :controller do
-
+  fixtures :all
   # This should return the minimal set of attributes required to create a valid
   # Line. As you add validations to Line, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {:name => 'T9'}
+    {:name => 'T7'}
   }
 
   let(:invalid_attributes) {
@@ -37,7 +37,8 @@ RSpec.describe LinesController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #index" do
-    it "assigns all lines as @lines" do
+    it "assigns all lines as @lines", pamonha:true do
+      Line.destroy_all
       line = Line.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:lines)).to eq([line])
@@ -107,6 +108,7 @@ RSpec.describe LinesController, type: :controller do
       }
 
       it "updates the requested line" do
+        Line.destroy_all
         line = Line.create! valid_attributes
         put :update, {:id => line.to_param, :line => new_attributes}, valid_session
         line.reload

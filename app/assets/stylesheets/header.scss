@@ -14,6 +14,7 @@
   height: 60px;
   background: #fff;
   position: relative;
+  z-index: 2;
 
   h1 {
     width: 50%;
@@ -32,9 +33,65 @@
     left: 21px;
   }
 
+  .bus2-search {
+    width: 34px;
+    height: 34px;
+    @include align-vertically();
+    position: absolute;
+    right: 21px; 
+  }
+
+  .bus2-triangle {
+    width: 23px;
+    height: 12px;
+    position: absolute;
+    bottom: -8px;
+    opacity: 0;
+    @include transition(all .3s $ease-out-quart);
+    @include transform(translateX(0));
+  }
+
+  svg.triangle {
+    width: 23px;
+    height: 12px;
+    fill: #fff;
+  }
+
+  svg.search {
+    width: 34px;
+    height: 34px;
+    fill: rgb(28,223,221);
+  }
+
   svg.menu-burger {
     width: 32px;
     height: 21px;
     fill: #cacaca;
+  }
+
+
+  &.select-menu  {
+    svg.menu-burger {
+      fill: #49BDFF;
+    }
+
+    .bus2-triangle {
+      opacity: 1;
+      @include transition(all .3s $ease-out-quart);
+      @include transform(translateX(23px));
+    }
+  }
+
+  &.select-search {
+    svg.search {
+      fill: #49BDFF;
+    }
+
+    .bus2-triangle {
+      opacity: 1;
+      @include transition(all .3s $ease-out-quart);
+      @include transform(translateX(327px));
+
+    }
   }
 }

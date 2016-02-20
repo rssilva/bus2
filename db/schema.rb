@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220202152) do
+ActiveRecord::Schema.define(version: 20160220182320) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -46,21 +46,6 @@ ActiveRecord::Schema.define(version: 20160220202152) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
-  create_table "cities", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "state_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "cities", ["state_id"], name: "index_cities_on_state_id"
-
-  create_table "countries", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "lines", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -69,15 +54,14 @@ ActiveRecord::Schema.define(version: 20160220202152) do
 
   add_index "lines", ["name"], name: "index_lines_on_name", unique: true
 
-  create_table "states", force: :cascade do |t|
-    t.string   "name"
-    t.string   "uf"
-    t.integer  "country_id"
+  create_table "paths", force: :cascade do |t|
+    t.integer  "line_id"
+    t.text     "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "states", ["country_id"], name: "index_states_on_country_id"
+  add_index "paths", ["line_id"], name: "index_paths_on_line_id", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "name",            null: false

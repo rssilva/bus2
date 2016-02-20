@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: T3
+
+two:
+  name: T5
+
+three:
+  name: T8
+
+four:
+  name: T1
