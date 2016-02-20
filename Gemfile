@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-#ruby '2.1.1'
+ruby '2.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -14,6 +14,11 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+# Databases
+gem 'pg'
+gem 'elasticsearch'
+gem 'elasticsearch-model'
+gem 'redis'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -30,11 +35,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+gem 'puma'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 #CMS PADRÃO
-gem 'activeadmin',github: 'gregbell/active_admin'
+gem 'activeadmin', github: 'gregbell/active_admin'
 # Plus integrations with:
 gem 'devise'
 # gem 'cancan' # or cancancan
@@ -42,7 +49,7 @@ gem 'devise'
 # gem 'pundit'
 
 #REACT
-gem 'react-rails', '~> 1.6.0'
+gem 'react-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
