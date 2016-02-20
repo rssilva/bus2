@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+
+/*
+  @include font("montserrat")
+  @include font("montserrat-bold")
+*/
+
+@import "bourbon";
+@import "fonts";
+
+
+body {
+  @include font("montserrat");
+  font-size: 16px;
+}
+
+// // Mobile phones
+
+// @media only screen and (min-width:768px) {
+//   // Tablets
+// }
+
+// @media only screen and (min-width: 1024px) {
+//   // Desktop
+// }

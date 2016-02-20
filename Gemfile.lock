@@ -266,6 +266,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  bourbon
   byebug
   capistrano3-puma
   coffee-rails (~> 4.1.0)

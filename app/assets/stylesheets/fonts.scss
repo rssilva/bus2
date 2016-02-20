@@ -1,0 +1,12 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+@mixin font($f) {
+
+  @if ($f == "montserrat") {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+  } @else if($f == "montserrat-bold") {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  }
+}
