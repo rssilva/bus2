@@ -1,13 +1,14 @@
-ruby:
-    version: 2.2.1-p85
-deployment:
-  staging:
-    branch: master
-    commands:
-      - git fetch origin --unshallow
-      - RAILS_ENV=test rake db:create
-      - RAILS_ENV=test rake db:migrate
-      - rspec
-      - RAILS_ENV=production rake db:create
-      - RAILS_ENV=production rake db:migrate
-      - RAILS_ENV=production rails s Puma -p 80
+machine:
+  ruby:
+      version: 2.2.1-p85
+  deployment:
+    staging:
+      branch: master
+      commands:
+        - git fetch origin --unshallow
+        - RAILS_ENV=test rake db:create
+        - RAILS_ENV=test rake db:migrate
+        - rspec
+        - RAILS_ENV=production rake db:create
+        - RAILS_ENV=production rake db:migrate
+        - RAILS_ENV=production rails s Puma -p 80
