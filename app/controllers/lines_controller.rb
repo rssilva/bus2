@@ -69,6 +69,6 @@ class LinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def line_params
-      params.require(:line).permit(:name)
+      params.require(:line).permit(:name, :city_id)
     end
 end

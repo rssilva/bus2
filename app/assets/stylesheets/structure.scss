@@ -12,3 +12,16 @@ section {
   height: calc(100% - 120px);
   background-color: #cacaca;
 }
+
+
+
+@media only screen and (min-width:768px) {
+  main {
+    width: 375px;
+    height: 600px;
+  }
+}
+
+// @media only screen and (min-width: 1024px) {
+//   // Desktop
+// }

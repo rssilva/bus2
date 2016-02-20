@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :scores
+  resources :alerts
+  resources :paths
   resources :lines
   resources :users
   devise_for :admin_users, ActiveAdmin::Devise.config

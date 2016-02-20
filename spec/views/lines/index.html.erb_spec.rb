@@ -4,10 +4,12 @@ RSpec.describe "lines/index", type: :view do
   before(:each) do
     assign(:lines, [
       Line.create!(
-        :name => "Name"
+        :name => "Name",
+        :city_id => 1
       ),
       Line.create!(
-        :name => "Name 2"
+        :name => "Name 2",
+        :city_id => 1
       )
     ])
   end

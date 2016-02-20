@@ -1,0 +1,8 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  line: one
+  position: '-1231231.123, 12312'
+  range: 3
+  active: true

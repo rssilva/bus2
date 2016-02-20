@@ -1,5 +1,5 @@
 .contribute-area-container {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
 
@@ -15,5 +15,13 @@
     font-size: 19px;
     text-transform: uppercase;
     color: #fff;
+  }
+
+  .contribute-bus {
+    width: 39px;
+    height: 23px;
+    margin-right: 8px;
+    position: relative;
+    top: 4px;
   }
 }

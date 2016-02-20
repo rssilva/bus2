@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: T3
+  city_id: 1
+two:
+  name: T5
+  city_id: 1
+
+three:
+  name: T8
+  city_id: 1
+
+four:
+  name: T1
+  city_id: 1
