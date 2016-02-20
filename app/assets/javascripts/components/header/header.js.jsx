@@ -1,11 +1,11 @@
 BUS2.Header = React.createClass({
   menuHandler: function() {
-    BUS2.mainContainer.find('.bus2-header').removeClass('select-search').addClass('select-menu');
+    ReactDOM.render(<BUS2.Nav />, $('.bus2-nav')[0]);
     return false;
   },
 
   pinAlertHandler: function() {
-    BUS2.mainContainer.find('.bus2-header').addClass('select-search').removeClass('select-menu');
+    BUS2.mainContainer.find('.bus2-header').toggleClass('select-search');
     return false;
   },
 
