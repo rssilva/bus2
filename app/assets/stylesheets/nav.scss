@@ -1,0 +1,15 @@
+.bus2-nav {
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: calc(100% - 120px);
+  @include transition(all .3s $ease-out-quart);
+  @include transform(translateY(-100%));
+  @include background (linear-gradient(0deg, #009bf3 0%, #49bdff 100%));
+  opacity: 0.9;
+
+  &.on {
+    @include transition(all .3s $ease-out-quart);
+    @include transform(translateY(0));
+  }
+}
