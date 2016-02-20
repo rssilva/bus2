@@ -222,7 +222,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   rails (= 4.2.4)
-  react-rails (~> 1.6.0)
+  react-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
