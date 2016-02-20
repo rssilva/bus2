@@ -28,7 +28,7 @@ RSpec.describe UsersController, type: :controller do
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {:name => '', :email => 'joão'}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -103,14 +103,14 @@ RSpec.describe UsersController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {:password => 'new_pass', :password_confirmation => 'new_pass'}
       }
 
-      it "updates the requested user" do
+      it "updates the requested user", focus:true do
         user = User.create! valid_attributes
         put :update, {:id => user.to_param, :user => new_attributes}, valid_session
         user.reload
-        skip("Add assertions for updated state")
+        expect(user.authenticate('new_pass')).not_to be(false)
       end
 
       it "assigns the requested user as @user" do
