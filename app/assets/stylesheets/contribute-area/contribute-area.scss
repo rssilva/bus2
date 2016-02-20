@@ -1,4 +1,12 @@
-.contribute-button {
-  height: 60px;
-  background-color: #1ce061;
+.contribute-area-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+  .contribute-button {
+    height: 60px;
+    background-color: #1ce061;
+    font-size: 19px;
+    text-transform: uppercase;
+  }
 }
