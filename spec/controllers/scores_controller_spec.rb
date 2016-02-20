@@ -76,6 +76,23 @@ RSpec.describe ScoresController, type: :controller do
         }.to change(Score, :count).by(1)
       end
 
+      it "adds 1 hit to user score and updates last_hit" do
+        time_now = Time.parse("Feb 24 1981")
+        Time.stubs(:now).returns(time_now)
+
+        post :create, {:score => valid_attributes}, valid_session
+        expect(Score.find_by_user_id(valid_attributes[:user_id]).hits).to eq(1)
+        expect(Score.find_by_user_id(valid_attributes[:user_id]).last_hit).to eq(time_now)
+      end
+
+      it "updates hits by 1 when score exists" do
+
+        post :create, {:score => valid_attributes}, valid_session
+        expect(Score.find_by_user_id(valid_attributes[:user_id]).hits).to eq(1)
+        post :create, {:score => valid_attributes}, valid_session
+        expect(Score.find_by_user_id(valid_attributes[:user_id]).hits).to eq(2)
+      end
+
       it "assigns a newly created score as @score" do
         post :create, {:score => valid_attributes}, valid_session
         expect(assigns(:score)).to be_a(Score)
