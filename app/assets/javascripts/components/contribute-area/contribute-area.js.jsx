@@ -1,9 +1,14 @@
 var ContributeArea = React.createClass({
+  onClick: function () {
+
+  },
+
   render: function () {
     return (
       <div className="contribute-area">
-        <div className="contribute-button">
-        </div>
+        <button className="contribute-button" onClick={this.onClick} >
+          <span className="label">Contribute</span>
+        </button>
       </div>
     )
   }

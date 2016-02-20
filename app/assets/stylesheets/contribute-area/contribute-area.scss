@@ -4,9 +4,16 @@
   width: 100%;
 
   .contribute-button {
+    display: block;
+    width: 100%;
     height: 60px;
+    border: 0;
     background-color: #1ce061;
+  }
+
+  .contribute-button .label {
     font-size: 19px;
     text-transform: uppercase;
+    color: #fff;
   }
 }
