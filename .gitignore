@@ -14,12 +14,16 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
-/tmp
-
+/tmp/*
+/tmp/cache
+!/tmp/csv_cidades_ibge
+!/tmp/estados.csv
+!/tmp/paises.csv
 
 
 *.iml
 *.ipr
 *.iws
+*.ids
 
 .vagrant

@@ -33,7 +33,7 @@
     left: 21px;
   }
 
-  .bus2-pin-alert {
+  .bus2-search {
     width: 34px;
     height: 34px;
     @include align-vertically();
@@ -57,9 +57,10 @@
     fill: #fff;
   }
 
-  svg.pin-alert {
+  svg.search {
     width: 34px;
     height: 34px;
+    fill: rgb(28,223,221);
   }
 
   svg.menu-burger {
@@ -69,15 +70,28 @@
   }
 
 
-  &.select-menu .bus2-triangle {
-    opacity: 1;
-    @include transition(all .3s $ease-out-quart);
-    @include transform(translateX(23px));
+  &.select-menu  {
+    svg.menu-burger {
+      fill: #49BDFF;
+    }
+
+    .bus2-triangle {
+      opacity: 1;
+      @include transition(all .3s $ease-out-quart);
+      @include transform(translateX(23px));
+    }
   }
 
-  &.select-pin-alert .bus2-triangle {
-    opacity: 1;
-    @include transition(all .3s $ease-out-quart);
-    @include transform(translateX(327px));
+  &.select-search {
+    svg.search {
+      fill: #49BDFF;
+    }
+
+    .bus2-triangle {
+      opacity: 1;
+      @include transition(all .3s $ease-out-quart);
+      @include transform(translateX(327px));
+
+    }
   }
 }
