@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe "lines/new", type: :view do
   before(:each) do
     assign(:line, Line.new(
-      :name => "MyString"
+      :name => "MyString",
+      :city_id => 1
     ))
   end
 

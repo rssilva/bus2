@@ -20,15 +20,22 @@ require 'rails_helper'
 
 RSpec.describe LinesController, type: :controller do
   fixtures :all
+
+  before(:each) do
+    country = Country.find_or_create_by({:name => 'Country'})
+    state = State.find_or_create_by({:name => 'state', :country => country, :uf => 'ST'})
+    @city = City.find_or_create_by({:name => 'City', :state => state})
+  end
+
   # This should return the minimal set of attributes required to create a valid
   # Line. As you add validations to Line, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {:name => 'T7'}
+    {:name => 'T7', :city_id => @city.id}
   }
 
   let(:invalid_attributes) {
-    {:name => ''}
+    {:name => '', :city_id => nil}
   }
 
   # This should return the minimal set of values that should be in the session
