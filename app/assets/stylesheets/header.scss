@@ -17,12 +17,15 @@
   z-index: 2;
 
   h1 {
-    width: 50%;
+    width: 105px;
     height: 100%;
     line-height: 60px;
     margin: 0 auto;
     text-align: center;
     @include font("montserrat-bold");
+    background: url(image_path('bus2-logo.png')) no-repeat center center;
+    background-size: 100%;
+    font-size: 0;
   }
 
   .bus2-menu-burger {
