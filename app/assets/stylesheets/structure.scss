@@ -1,0 +1,14 @@
+main {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+}
+
+section {
+  width: 100%;
+  position: relative;
+  height: calc(100% - 120px);
+  background-color: #cacaca;
+}
