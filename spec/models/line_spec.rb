@@ -6,6 +6,10 @@ RSpec.describe Line, type: :model do
   }
 
   it {
+    should validate_presence_of :city_id
+  }
+
+  it {
     should_not allow_value("").for(:name)
   }
 
