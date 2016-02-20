@@ -1,0 +1,16 @@
+@import "fonts";
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.hidden {
+  display: none;
+}
+
+body {
+  @include font("montserrat");
+  font-size: 16px;
+  color: $main-color;
+  @include font-smoothing();
+}
