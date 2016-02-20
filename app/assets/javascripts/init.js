@@ -1,0 +1,1 @@
+window.BUS2 = {};

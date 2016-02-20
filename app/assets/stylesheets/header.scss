@@ -14,6 +14,7 @@
   height: 60px;
   background: #fff;
   position: relative;
+  z-index: 2;
 
   h1 {
     width: 50%;
@@ -32,9 +33,51 @@
     left: 21px;
   }
 
+  .bus2-pin-alert {
+    width: 34px;
+    height: 34px;
+    @include align-vertically();
+    position: absolute;
+    right: 21px; 
+  }
+
+  .bus2-triangle {
+    width: 23px;
+    height: 12px;
+    position: absolute;
+    bottom: -8px;
+    opacity: 0;
+    @include transition(all .3s $ease-out-quart);
+    @include transform(translateX(0));
+  }
+
+  svg.triangle {
+    width: 23px;
+    height: 12px;
+    fill: #fff;
+  }
+
+  svg.pin-alert {
+    width: 34px;
+    height: 34px;
+  }
+
   svg.menu-burger {
     width: 32px;
     height: 21px;
     fill: #cacaca;
+  }
+
+
+  &.select-menu .bus2-triangle {
+    opacity: 1;
+    @include transition(all .3s $ease-out-quart);
+    @include transform(translateX(23px));
+  }
+
+  &.select-pin-alert .bus2-triangle {
+    opacity: 1;
+    @include transition(all .3s $ease-out-quart);
+    @include transform(translateX(327px));
   }
 }

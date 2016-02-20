@@ -1,4 +1,4 @@
-var ContributeArea = React.createClass({
+BUS2.ContributeArea = React.createClass({
   onClick: function () {
 
   },
