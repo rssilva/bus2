@@ -1,0 +1,6 @@
+require 'json'
+class Path < ActiveRecord::Base
+  belongs_to :line
+
+  validates :line, presence: true, allow_blank: false, uniqueness: true
+end
