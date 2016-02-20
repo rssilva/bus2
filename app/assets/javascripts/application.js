@@ -13,6 +13,6 @@
 //= require jquery
 //= require vendor/react
 //= require vendor/reactDom
-//= require components/contribute-area/contribute-area
-//= require components/header/header
+//= require init
+//= require_tree ./components
 //= require app

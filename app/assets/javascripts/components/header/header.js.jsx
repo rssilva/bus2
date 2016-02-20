@@ -1,4 +1,4 @@
-var Header = React.createClass({
+BUS2.Header = React.createClass({
   render: function () {
     return (
       <div>

@@ -21,3 +21,5 @@
 *.iml
 *.ipr
 *.iws
+
+.vagrant
