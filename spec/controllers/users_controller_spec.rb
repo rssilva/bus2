@@ -38,6 +38,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe "GET #index" do
     it "assigns all users as @users" do
+      User.destroy_all
       user = User.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:users)).to eq([user])
@@ -46,6 +47,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe "GET #show" do
     it "assigns the requested user as @user" do
+      User.destroy_all
       user = User.create! valid_attributes
       get :show, {:id => user.to_param}, valid_session
       expect(assigns(:user)).to eq(user)
@@ -61,6 +63,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe "GET #edit" do
     it "assigns the requested user as @user" do
+      User.destroy_all
       user = User.create! valid_attributes
       get :edit, {:id => user.to_param}, valid_session
       expect(assigns(:user)).to eq(user)
@@ -68,6 +71,9 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "POST #create" do
+    before :each do
+      User.destroy_all
+    end
     context "with valid params" do
       it "creates a new User" do
         expect {
@@ -101,6 +107,9 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "PUT #update" do
+    before :each do
+      User.destroy_all
+    end
     context "with valid params" do
       let(:new_attributes) {
         {:password => 'new_pass', :password_confirmation => 'new_pass'}
@@ -142,6 +151,9 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "DELETE #destroy" do
+    before :each do
+      User.destroy_all
+    end
     it "destroys the requested user" do
       user = User.create! valid_attributes
       expect {
