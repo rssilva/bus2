@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220173520) do
+ActiveRecord::Schema.define(version: 20160220182320) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -53,6 +53,15 @@ ActiveRecord::Schema.define(version: 20160220173520) do
   end
 
   add_index "lines", ["name"], name: "index_lines_on_name", unique: true
+
+  create_table "paths", force: :cascade do |t|
+    t.integer  "line_id"
+    t.text     "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "paths", ["line_id"], name: "index_paths_on_line_id", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "name",            null: false
