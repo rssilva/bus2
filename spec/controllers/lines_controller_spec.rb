@@ -23,7 +23,7 @@ RSpec.describe LinesController, type: :controller do
 
   before(:each) do
     country = Country.find_or_create_by({:name => 'Country'})
-    state = State.find_or_create_by({:name => 'City', :country => country})
+    state = State.find_or_create_by({:name => 'state', :country => country, :uf => 'ST'})
     @city = City.find_or_create_by({:name => 'City', :state => state})
   end
 
