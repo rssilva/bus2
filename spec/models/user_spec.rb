@@ -16,6 +16,8 @@ RSpec.describe User, type: :model do
         should_not allow_value("").for(:name)
       }
 
+      it { should have_one(:score)}
+
       it { should validate_uniqueness_of(:email) }
 
       it { should have_secure_password }
