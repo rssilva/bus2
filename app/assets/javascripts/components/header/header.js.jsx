@@ -1,6 +1,24 @@
 BUS2.Header = React.createClass({
+
+  getInitialState: function() {
+    return {
+      isMenuOpen: false
+    };
+  },
+
   menuHandler: function() {
-    ReactDOM.render(<BUS2.Nav />, $('.bus2-nav')[0]);
+    BUS2.mainContainer.find('.bus2-header').toggleClass('select-menu');
+    
+    var isMenuOpen = this.state.isMenuOpen;
+
+    if (isMenuOpen) {
+      ReactDOM.unmountComponentAtNode($('.bus2-nav')[0]);
+      this.setState({isMenuOpen: false});
+    } else {
+      ReactDOM.render(<BUS2.Nav />, $('.bus2-nav')[0]);
+      this.setState({isMenuOpen: true});
+    }
+
     return false;
   },
 
