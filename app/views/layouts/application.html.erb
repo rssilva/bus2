@@ -8,7 +8,25 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <div class="hidden">
+      <svg>
+        <symbol id="menu-burger" viewBox="0 0 32 21" class="menu">
+          <path d="M-0 21C-0 21-0 16.12-0 16.12-0 16.12 32 16.12 32 16.12 32 16.12 32 21 32 21 32 21-0 21-0 21ZM-0 8.06C-0 8.06 32 8.06 32 8.06 32 8.06 32 12.94 32 12.94 32 12.94-0 12.94-0 12.94-0 12.94-0 8.06-0 8.06ZM-0 0C-0 0 32 0 32 0 32 0 32 4.88 32 4.88 32 4.88-0 4.88-0 4.88-0 4.88-0 0-0 0Z" fill="rgb(201,201,201)"/></svg>
+        </symbol>
+      </svg>
+    </div>
 
+    <header class="bus2-header">
+      <a href="#menu" class="bus2-menu-burger">
+        <svg class="menu-burger">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-burger"></use>
+        </svg>
+      </a>
+      <h1>BUS2</h1>
+    </header>
+    <!-- <nav>
+      
+    </nav> -->
     <%= yield %>
     
     <%= javascript_include_tag 'application'%>
