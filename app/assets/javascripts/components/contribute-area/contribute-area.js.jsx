@@ -1,14 +1,21 @@
 BUS2.ContributeArea = React.createClass({
-  onClick: function () {
+  getInitialState: function () {
+    return {
+      isOpen: false
+    }
+  },
 
+  onClick: function () {
+    // window.history.pushState({}, '', '#/contribute/set');
+    window.location.hash = '#/contribute/set'
   },
 
   render: function () {
     return (
       <div className="contribute-area">
-        <button className="contribute-button" onClick={this.onClick} >
+        <div className="contribute-button" onClick={this.onClick} >
           <span className="label">Contribute</span>
-        </button>
+        </div>
       </div>
     )
   }
