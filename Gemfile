@@ -33,12 +33,16 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#CMS PADRÃO
 gem 'activeadmin',github: 'gregbell/active_admin'
 # Plus integrations with:
 gem 'devise'
 # gem 'cancan' # or cancancan
 # gem 'draper'
 # gem 'pundit'
+
+#REACT
+gem 'react-rails', '~> 1.6.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
