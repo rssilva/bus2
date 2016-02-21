@@ -21,10 +21,23 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def facebook
+    unless params[:user][:fb_token]
+      render json: Exception.new('Invalid token'), status: :unprocessable_entity
+    end
+      @fb_params = Facebook.authenticate(params[:user][:fb_token])
+      user = User.find_by_facebook_id(@fb_params[:facebook_id])
+      if user
+        render json: {:id => user[:id], :name => user[:name], :email => user[:email]}, status: :ok
+      else
+        self.create unless User.find_by_facebook_id(@fb_params[:facebook_id])
+      end
+  end
+
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @user = User.new(@fb_params||user_params)
 
     respond_to do |format|
       if @user.save
@@ -69,6 +82,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :fb_token)
     end
 end
