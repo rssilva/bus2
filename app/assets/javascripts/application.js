@@ -16,5 +16,6 @@
 //= require vendor/director
 //= require vendor/react-autocomplete
 //= require init
+//= require_tree ./handlers
 //= require_tree ./components
 //= require app

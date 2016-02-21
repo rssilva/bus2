@@ -7,7 +7,7 @@
   margin-top: 90px;
   height: calc(100% - 120px);
   text-align: center;
-
+  z-index: 1;
   @include transition(all .3s $ease-out-quart);
   // @include transform(translateY(-100%));
   @include background (linear-gradient(0deg, rgb(0,184,65) 0%, rgb(0,205,72) 100%));

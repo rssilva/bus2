@@ -9,10 +9,10 @@
     },
 
     submit: function (ev) {
-      var form;
-      ev.preventDefault();
+      var that = this;
 
-      form = $('.login-form');
+      var form = $('.login-form');
+
       var email = ReactDOM.findDOMNode(form.find('.email')[0]);
       var password = ReactDOM.findDOMNode(form.find('.password')[0]);
 
@@ -24,12 +24,23 @@
       };
 
       $.ajax({
-        url: '/users',
+        url: '/user/login',
         type: 'POST',
         data: data
       }).done(function (data) {
         console.log(data)
-      })
+        that.onLoginSuccess();
+      });
+
+      ev.preventDefault();
+    },
+
+    onLoginSuccess: function (data) {
+      Eventer.trigger('loginSuccessful');
+    },
+
+    onRegisterClick: function () {
+      Eventer.trigger('contributeRegisterClick');
     },
 
     componentDidMount: function () {
@@ -42,13 +53,18 @@
 
     render: function () {
       return (
-        <form className="login-form" onSubmit={this.submit}>
-          <span className="label">Email:</span>
-          <input className="email"></input>
-          <span className="label">Password:</span>
-          <input className="password"></input>
-          <input type="submit" value="Login"/>
-        </form>
+        <div>
+          <form className="login-form" onSubmit={this.submit}>
+            <span className="label">Email:</span>
+            <input className="email"></input>
+            <span className="label">Password:</span>
+            <input className="password"></input>
+            <input type="submit" value="Login"/>
+          </form>
+          <button className="register-contribute-button" onClick={this.onRegisterClick}>
+            Register
+          </button>
+        </div>
       );
     }
   });

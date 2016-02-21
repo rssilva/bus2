@@ -41,7 +41,7 @@ RSpec.describe AlertsController, type: :controller do
       Alert.destroy_all
       alert = Alert.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:alerts)).to eq([alert])
+      expect(response.body).to eq(Alert.all.to_json)
     end
   end
 

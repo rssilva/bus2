@@ -89,6 +89,15 @@ module LineInstance
       @users_reporting = @users_reporting.reject{ |r| r[:user_id] == user_id }
     end
 
+    def set_last_updated dt
+      @last_update = dt
+    end
+
+
+    def self.search_for(*args,&block)
+      __elasticsearch__.search(*args, &block)
+    end
+
 
 
   end

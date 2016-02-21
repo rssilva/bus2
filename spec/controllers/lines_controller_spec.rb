@@ -48,7 +48,7 @@ RSpec.describe LinesController, type: :controller do
       Line.destroy_all
       line = Line.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:lines)).to eq([line])
+      expect(response.body).to eq(Line.all.to_json)
     end
   end
 

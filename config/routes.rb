@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  mount Knock::Engine => "/knock"
+
   resources :scores
   resources :alerts
   resources :paths
@@ -8,8 +11,10 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   post 'facebook/callback'=> 'users#facebook'
+  post 'user/login'=> 'users#login'
 
   root 'home#index'
+
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
@@ -32,6 +37,12 @@ Rails.application.routes.draw do
       resource :line_search do
         get 'search', controller: 'line_search', action: :search
       end
+
+      resource :user do
+        get 'location/push/sensor', controller: 'user', action: :location_push
+      end
+
+
 
       #TODO: Construct Routes 2 push GPS sensor data
       #TODO: Construct Routes 2 search LineInstances
