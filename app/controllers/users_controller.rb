@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    render json: @user, :except => [:password_digest, :facebook_id],  status: :ok
   end
 
   def facebook
@@ -34,7 +35,7 @@ class UsersController < ApplicationController
     @user = User.new(@fb_params||user_params)
 
       if @user.save
-        render json: @user, status: :created
+        render json: @user, :except => [:password_digest, :facebook_id], status: :created
       else
         render json: @user.errors, status: :unprocessable_entity
       end
@@ -44,9 +45,9 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
       if @user.update(user_params)
-        render :show, status: :ok, location: @user
+        render json: @user, :except => [:password_digest, :facebook_id], status: :ok
       else
-         render json: @user.errors, status: :unprocessable_entity
+        render json: @user.errors, status: :unprocessable_entity
       end
   end
 

@@ -9,8 +9,10 @@ class AlertsController < ApplicationController
     @alerts = Alert.all
   end
 
-  # GET /alerts/1/edit
-  def edit
+  # GET /lines/1
+  # GET /lines/1.json
+  def show
+    render json: @alert,  status: :ok
   end
 
   # POST /alerts
@@ -19,7 +21,7 @@ class AlertsController < ApplicationController
     @alert = Alert.new(alert_params)
 
       if @alert.save
-        render :show, status: :created, location: @alert
+        render json: @alert, status: :created
       else
         render json: @alert.errors, status: :unprocessable_entity
       end
@@ -29,7 +31,7 @@ class AlertsController < ApplicationController
   # PATCH/PUT /alerts/1.json
   def update
       if @alert.update(alert_params)
-         render :show, status: :ok, location: @alert
+        render json: @alert, status: :ok
       else
         render json: @alert.errors, status: :unprocessable_entity
       end

@@ -11,6 +11,7 @@ class PathsController < ApplicationController
   # GET /paths/1
   # GET /paths/1.json
   def show
+    render json: @path,  status: :ok
   end
 
   # POST /paths
@@ -18,7 +19,7 @@ class PathsController < ApplicationController
   def create
     @path = Path.new(path_params)
       if @path.save
-         render :show, status: :created, location: @path
+         render json: @path, status: :created
       else
         render json: @path.errors, status: :unprocessable_entity
       end
@@ -27,9 +28,7 @@ class PathsController < ApplicationController
   # PATCH/PUT /paths/1
   # PATCH/PUT /paths/1.json
   def update
-    p path_params
       if @path.update(path_params)
-        p @path
          render json: @path, status: :ok
       else
          render json: @path.errors, status: :unprocessable_entity

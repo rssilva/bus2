@@ -1,4 +1,5 @@
 class ScoresController < ApplicationController
+  include RestApiConcerns
   before_action :set_score, only: [:show, :edit, :update, :destroy]
 
   # GET /scores
@@ -10,15 +11,7 @@ class ScoresController < ApplicationController
   # GET /scores/1
   # GET /scores/1.json
   def show
-  end
-
-  # GET /scores/new
-  def new
-    @score = Score.new
-  end
-
-  # GET /scores/1/edit
-  def edit
+    render json: @score,  status: :ok
   end
 
   # POST /scores
@@ -27,14 +20,10 @@ class ScoresController < ApplicationController
     @score = Score.find_by_user_id(score_params[:user_id])
     @score = Score.new(score_params) unless @score
 
-    respond_to do |format|
-      if @score.save
-        format.html { redirect_to @score, notice: 'Score was successfully created.' }
-        format.json { render :show, status: :created, location: @score }
-      else
-        format.html { render :new }
-        format.json { render json: @score.errors, status: :unprocessable_entity }
-      end
+    if @score.save
+      render json: @score, status: :created
+    else
+      render json: @score.errors, status: :unprocessable_entity
     end
   end
 
@@ -42,10 +31,7 @@ class ScoresController < ApplicationController
   # DELETE /scores/1.json
   def destroy
     @score.destroy
-    respond_to do |format|
-      format.html { redirect_to scores_url, notice: 'Score was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    head :no_content
   end
 
   private
