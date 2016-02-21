@@ -17,6 +17,7 @@
       this.userMarker = new google.maps.Marker({
         position: position,
         map: this.map,
+        icon: "/assets/person-marker.png"
       });
     },
 
