@@ -38,10 +38,11 @@ RSpec.describe AlertsController, type: :controller do
 
   describe "GET #index" do
     it "assigns all alerts as @alerts" do
+      AlertsController.any_instance.stubs(:current_user).returns(User.new(id: users(:one).id))
       Alert.destroy_all
       alert = Alert.create! valid_attributes
       get :index, {}, valid_session
-      expect(response.body).to eq(Alert.all.to_json)
+      expect(response.body).to eq(Alert.where({:user_id => users(:one).id}).to_json)
     end
   end
 
@@ -54,15 +55,6 @@ RSpec.describe AlertsController, type: :controller do
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested alert as @alert" do
-      Alert.destroy_all
-      alert = Alert.create! valid_attributes
-      get :edit, {:id => alert.to_param}, valid_session
-      expect(assigns(:alert)).to eq(alert)
-    end
-  end
-
   describe "POST #create" do
     context "with valid params" do
       before :each do
@@ -71,7 +63,7 @@ RSpec.describe AlertsController, type: :controller do
       it "creates a new Alert" do
         AlertsController.any_instance.stubs(:current_user).returns(User.new(id: users(:one).id))
         valid_attributes.delete(:user_id)
-        
+
         expect {
           post :create, {:alert => valid_attributes}, valid_session
         }.to change(Alert, :count).by(1)
@@ -109,51 +101,7 @@ RSpec.describe AlertsController, type: :controller do
     end
   end
 
-  describe "PUT #update" do
-    before :each do
-      Alert.destroy_all
-    end
-    context "with valid params" do
-      let(:new_attributes) {
-        {:range => 2, :position => '31323,678687'}
-      }
 
-      it "updates the requested alert" do
-        alert = Alert.create! valid_attributes
-        put :update, {:id => alert.to_param, :alert => new_attributes}, valid_session
-        alert.reload
-        expect(alert.range).to eq(new_attributes[:range])
-        expect(alert.position).to eq(new_attributes[:position])
-      end
-
-      it "assigns the requested alert as @alert" do
-        alert = Alert.create! valid_attributes
-        put :update, {:id => alert.to_param, :alert => valid_attributes}, valid_session
-        expect(assigns(:alert)).to eq(alert)
-      end
-
-      it "returns ok code" do
-        alert = Alert.create! valid_attributes
-        put :update, {:id => alert.to_param, :alert => valid_attributes}, valid_session
-
-        expect(response).to have_http_status(:ok)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the alert as @alert" do
-        alert = Alert.create! valid_attributes
-        put :update, {:id => alert.to_param, :alert => invalid_attributes}, valid_session
-        expect(assigns(:alert)).to eq(alert)
-      end
-
-      it "returns unprocessable_entity code" do
-        alert = Alert.create! valid_attributes
-        put :update, {:id => alert.to_param, :alert => invalid_attributes}, valid_session
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-    end
-  end
 
   describe "DELETE #destroy" do
     before :each do
