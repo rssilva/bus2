@@ -9,27 +9,12 @@
 
   ReactDOM.render(<BUS2.ContributeArea />, $('.contribute-area-container')[0]);
 
-  var routes = {
-    '/contribute': function () {
-
-    },
-    '/contribute/set': function () {
-      BUS2.Eventer.trigger('setContribution', {isOpen: true});
-    }
-  };
-
-  BUS2.router = Router(routes).configure({
-    // html5history: true
-  });
-
-  BUS2.router.init();
-
   BUS2.LocationHandler.init();
 
-  setInterval(function () {
-    BUS2.LocationHandler.getCurrentPosition(function (lat, lng) {
+  BUS2.MapComponent.init($('.map-canvas')[0], -30.0346, -51.217, 14);
 
-    });
-  }, 5000)
+  BUS2.LocationHandler.getCurrentPosition(function (lat, lng) {
+    BUS2.MapComponent.setCenter({lat: lat, lng: lng});
+  });
 
 })();
