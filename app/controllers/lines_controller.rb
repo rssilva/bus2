@@ -1,4 +1,5 @@
 class LinesController < ApplicationController
+  include RestApiConcerns
   before_action :set_line, only: [:show, :edit, :update, :destroy]
 
   # GET /lines
@@ -38,7 +39,7 @@ class LinesController < ApplicationController
   # DELETE /lines/1.json
   def destroy
     @line.destroy
-    head :no_content 
+    head :no_content
   end
 
   private

@@ -30,7 +30,7 @@ RSpec.describe PathsController, type: :controller do
   }
 
   let(:invalid_attributes) {
-    {:line => nil}
+    {:line_id => nil}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -55,21 +55,6 @@ RSpec.describe PathsController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new path as @path" do
-      get :new, {}, valid_session
-      expect(assigns(:path)).to be_a_new(Path)
-    end
-  end
-
-  describe "GET #edit" do
-    it "assigns the requested path as @path" do
-      path = Path.create! valid_attributes
-      get :edit, {:id => path.to_param}, valid_session
-      expect(assigns(:path)).to eq(path)
-    end
-  end
-
   describe "POST #create" do
     context "with valid params" do
       before :each do
@@ -87,9 +72,9 @@ RSpec.describe PathsController, type: :controller do
         expect(assigns(:path)).to be_persisted
       end
 
-      it "redirects to the created path" do
+      it "returns created code" do
         post :create, {:path => valid_attributes}, valid_session
-        expect(response).to redirect_to(Path.last)
+        expect(response).to have_http_status(:created)
       end
     end
 
@@ -99,9 +84,9 @@ RSpec.describe PathsController, type: :controller do
         expect(assigns(:path)).to be_a_new(Path)
       end
 
-      it "re-renders the 'new' template" do
+      it "returns unprocessable_entity code" do
         post :create, {:path => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -127,10 +112,10 @@ RSpec.describe PathsController, type: :controller do
         expect(assigns(:path)).to eq(path)
       end
 
-      it "redirects to the path" do
+      it "returns ok code" do
         path = Path.create! valid_attributes
         put :update, {:id => path.to_param, :path => valid_attributes}, valid_session
-        expect(response).to redirect_to(path)
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -138,16 +123,17 @@ RSpec.describe PathsController, type: :controller do
       before :each do
         Path.destroy_all
       end
-      it "assigns the path as @path" do
+      it "should not update params" do
         path = Path.create! valid_attributes
         put :update, {:id => path.to_param, :path => invalid_attributes}, valid_session
-        expect(assigns(:path)).to eq(path)
+        expect(Path.last.to_json).to eq(path.to_json)
       end
 
-      it "re-renders the 'edit' template" do
+      it "returns unprocessable_entity code" do
         path = Path.create! valid_attributes
+        p invalid_attributes
         put :update, {:id => path.to_param, :path => invalid_attributes}, valid_session
-        expect(response).to have_http_status(:redirect)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -163,10 +149,10 @@ RSpec.describe PathsController, type: :controller do
       }.to change(Path, :count).by(-1)
     end
 
-    it "redirects to the paths list" do
+    it "returns no_content code" do
       path = Path.create! valid_attributes
       delete :destroy, {:id => path.to_param}, valid_session
-      expect(response).to redirect_to(paths_url)
+      expect(response).to have_http_status(:no_content)
     end
   end
 
