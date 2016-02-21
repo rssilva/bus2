@@ -8,20 +8,20 @@ module Api
       #GET /api/v1/line_search/search/:country/:state/:city?:name=&[radius=10km]
       def search_lines
         queryES = {}
-        if !permited_params[:city].nil? or permited_params[:state].nil? or permited_params[:country].nil?
+        if !permited_params[:city].nil? and permited_params[:state].nil? and permited_params[:country].nil?
           queryES[:query] = {
               :bool => {
                   :must => []
               }
           }
           if !permited_params[:city].nil? and permited_params[:city] != "null"
-            queryES[:query][:bool][:must] << {:match => { "city.name" => {:query => permited_params[:city].capitalize, :operator => 'and'}}}
+            queryES[:query][:bool][:must] << {:match => { "city.id" => {:query => permited_params[:city], :operator => 'and'}}}
           end
           if !permited_params[:state].nil? and permited_params[:state] != "null"
-            queryES[:query][:bool][:must] << {:match => { "state.uf" => {:query => permited_params[:state].capitalize, :operator => 'and'}}}
+            queryES[:query][:bool][:must] << {:match => { "state.id" => {:query => permited_params[:state], :operator => 'and'}}}
           end
           if !permited_params[:country].nil? and permited_params[:country] != "null"
-            queryES[:query][:bool][:must] << {:match => { "country.name" => {:query => permited_params[:country].capitalize, :operator => 'and'}}}
+            queryES[:query][:bool][:must] << {:match => { "country.id" => {:query => permited_params[:country], :operator => 'and'}}}
           end
         end
         if !permited_params[:lat].nil? and !permited_params[:lon].nil?
