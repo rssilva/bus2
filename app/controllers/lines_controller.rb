@@ -12,53 +12,33 @@ class LinesController < ApplicationController
   def show
   end
 
-  # GET /lines/new
-  def new
-    @line = Line.new
-  end
-
-  # GET /lines/1/edit
-  def edit
-  end
-
   # POST /lines
   # POST /lines.json
   def create
     @line = Line.new(line_params)
 
-    respond_to do |format|
       if @line.save
-        format.html { redirect_to @line, notice: 'Line was successfully created.' }
-        format.json { render :show, status: :created, location: @line }
+        render :show, status: :created, location: @line
       else
-        format.html { render :new }
-        format.json { render json: @line.errors, status: :unprocessable_entity }
+        render json: @line.errors, status: :unprocessable_entity
       end
-    end
   end
 
   # PATCH/PUT /lines/1
   # PATCH/PUT /lines/1.json
   def update
-    respond_to do |format|
       if @line.update(line_params)
-        format.html { redirect_to @line, notice: 'Line was successfully updated.' }
-        format.json { render :show, status: :ok, location: @line }
+        render :show, status: :ok, location: @line
       else
-        format.html { render :edit }
-        format.json { render json: @line.errors, status: :unprocessable_entity }
+        render json: @line.errors, status: :unprocessable_entity
       end
-    end
   end
 
   # DELETE /lines/1
   # DELETE /lines/1.json
   def destroy
     @line.destroy
-    respond_to do |format|
-      format.html { redirect_to lines_url, notice: 'Line was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    head :no_content 
   end
 
   private
