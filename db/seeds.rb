@@ -43,7 +43,7 @@ Dir["tmp/csv_cidades_ibge/*.csv"].each{ |file_name|
     data.split("\n").each{ |cityName|
       puts "     - city: "+cityName
       city = City.find_or_create_by({
-                                            :name => cityName,
+                                            :name => cityName.tr("\n","").tr("\r",""),
                                             :state_id => state.id
                                         })
     }
