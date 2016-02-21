@@ -8,7 +8,7 @@ module Api
       #GET /api/v1/line_search/search/:country/:state/:city?:name=&[radius=10km]
       def search_lines
         queryES = {}
-        if !permited_params[:city].nil? or permited_params[:state].nil? or permited_params[:country].nil?
+        if !permited_params[:city].nil? and permited_params[:state].nil? and permited_params[:country].nil?
           queryES[:query] = {
               :bool => {
                   :must => []
