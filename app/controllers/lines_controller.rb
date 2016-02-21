@@ -5,7 +5,10 @@ class LinesController < ApplicationController
   # GET /lines
   # GET /lines.json
   def index
-    @lines = Line.all
+    limit = params[:limit]||10
+    offset = params[:offset]||0
+    lines = Line.limit(limit).offset(offset)
+    render json: lines, status: :ok
   end
 
   # GET /lines/1

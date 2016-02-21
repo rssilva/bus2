@@ -5,7 +5,10 @@ class ScoresController < ApplicationController
   # GET /scores
   # GET /scores.json
   def index
-    @scores = Score.all
+    limit = params[:limit]||10
+    offset = params[:offset]||0
+    scores = Score.limit(limit).offset(offset)
+    render json: scores, status: :ok
   end
 
   # GET /scores/1
