@@ -6,10 +6,11 @@ RSpec.describe Api::V1::CityController, type: :controller do
   before(:each) do
     Country.delete_all
     State.delete_all
+    City.delete_all
 
     country = Country.find_or_create_by({:name => 'CountryTest'})
     @state = State.find_or_create_by({:name => 'StateTest', :country => country, :uf => 'ST'})
-    # @city = City.find_or_create_by({:name => 'CityTest', :state => state})
+    @city = City.find_or_create_by({:name => 'CityTest', :state => @state})
   end
 
   let(:valid_find_attributes) {
@@ -22,7 +23,7 @@ RSpec.describe Api::V1::CityController, type: :controller do
 
 
   let(:valid_create_attributes) {
-    {:name => 'CityTest', :state_id => @state.id}
+    {:name => 'CityTest 2', :state_id => @state.id}
   }
 
   let(:invalid_create_attributes) {
@@ -33,7 +34,8 @@ RSpec.describe Api::V1::CityController, type: :controller do
 
 
   describe "GET #find_match" do
-    it "find a match containing the letters informed at @countries", pamonha:true do
+    it "find a match containing the letters informed at @countries" do
+      City.destroy_all
       city = City.create! valid_create_attributes
       get :find_match, valid_find_attributes, valid_session
       expect(assigns(:cities)).to eq([city])

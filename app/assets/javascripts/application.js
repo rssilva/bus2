@@ -14,6 +14,7 @@
 //= require vendor/react
 //= require vendor/reactDom
 //= require vendor/director
+//= require vendor/react-autocomplete
 //= require init
 //= require_tree ./components
 //= require app

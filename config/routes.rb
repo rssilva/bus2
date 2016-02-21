@@ -7,11 +7,9 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+  post 'facebook/callback'=> 'users#facebook'
 
   root 'home#index'
-
-
-  #API
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
@@ -41,7 +39,6 @@ Rails.application.routes.draw do
   #
   # patch 'flight_price_tables/table/update/:id', controller: 'flight_price_tables', action: :update
   # get  'flight_price_tables/table/show/:to', controller: 'flight_price_tables', action: :show_table
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

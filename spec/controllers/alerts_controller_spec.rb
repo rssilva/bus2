@@ -54,13 +54,6 @@ RSpec.describe AlertsController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new alert as @alert" do
-      get :new, {}, valid_session
-      expect(assigns(:alert)).to be_a_new(Alert)
-    end
-  end
-
   describe "GET #edit" do
     it "assigns the requested alert as @alert" do
       Alert.destroy_all
@@ -87,9 +80,9 @@ RSpec.describe AlertsController, type: :controller do
         expect(assigns(:alert)).to be_persisted
       end
 
-      it "redirects to the created alert" do
+      it "returns created code" do
         post :create, {:alert => valid_attributes}, valid_session
-        expect(response).to redirect_to(Alert.last)
+        expect(response).to have_http_status(:created)
       end
     end
 
@@ -99,9 +92,9 @@ RSpec.describe AlertsController, type: :controller do
         expect(assigns(:alert)).to be_a_new(Alert)
       end
 
-      it "re-renders the 'new' template" do
+      it "returns unprocessable_entity code" do
         post :create, {:alert => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -129,10 +122,11 @@ RSpec.describe AlertsController, type: :controller do
         expect(assigns(:alert)).to eq(alert)
       end
 
-      it "redirects to the alert" do
+      it "returns ok code" do
         alert = Alert.create! valid_attributes
         put :update, {:id => alert.to_param, :alert => valid_attributes}, valid_session
-        expect(response).to redirect_to(alert)
+
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -143,10 +137,10 @@ RSpec.describe AlertsController, type: :controller do
         expect(assigns(:alert)).to eq(alert)
       end
 
-      it "re-renders the 'edit' template" do
+      it "returns unprocessable_entity code" do
         alert = Alert.create! valid_attributes
         put :update, {:id => alert.to_param, :alert => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -162,10 +156,10 @@ RSpec.describe AlertsController, type: :controller do
       }.to change(Alert, :count).by(-1)
     end
 
-    it "redirects to the alerts list" do
+    it "returns no_content code" do
       alert = Alert.create! valid_attributes
       delete :destroy, {:id => alert.to_param}, valid_session
-      expect(response).to redirect_to(alerts_url)
+      expect(response).to have_http_status(:no_content)
     end
   end
 
