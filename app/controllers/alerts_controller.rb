@@ -1,6 +1,8 @@
 class AlertsController < ApplicationController
   include RestApiConcerns
 
+  before_action :authenticate, if: "Rails.env.production? || Rails.env.development?"
+
   before_action :set_alert, only: [:show, :edit, :update, :destroy]
 
   # GET /alerts
@@ -21,7 +23,7 @@ class AlertsController < ApplicationController
   # POST /alerts
   # POST /alerts.json
   def create
-    @alert = Alert.new(alert_params)
+    @alert = Alert.new(alert_params.merge({:user_id => current_user.id}))
 
       if @alert.save
         render json: @alert, status: :created
@@ -44,7 +46,7 @@ class AlertsController < ApplicationController
   # DELETE /alerts/1.json
   def destroy
     @alert.destroy
-       head :no_content
+    head :no_content
   end
 
   private
@@ -55,6 +57,6 @@ class AlertsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def alert_params
-      params.require(:alert).permit(:user_id, :line_id, :position, :range, :active)
+      params.require(:alert).permit(:line_id, :position, :range, :active)
     end
 end

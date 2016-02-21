@@ -35,11 +35,12 @@ Rails.application.routes.draw do
       end
 
       resource :line_search do
-        get 'search', controller: 'line_search', action: :search
+        get 'search/:country/:state/:city', controller: 'line_search', action: :search_lines
       end
 
       resource :user do
-        get 'location/push/sensor', controller: 'user', action: :location_push
+        post 'location/push/sensor', controller: 'user', action: :location_push
+        get 'location/retrieve/sensor', controller: 'user', action: :location_retrieve
       end
 
 

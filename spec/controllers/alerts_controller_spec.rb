@@ -28,7 +28,7 @@ RSpec.describe AlertsController, type: :controller do
   }
 
   let(:invalid_attributes) {
-    {:user => nil, :line => lines(:one), :position => '', :range => 2, :active => true}
+    {:line => lines(:one), :position => '', :range => 2, :active => true}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -69,18 +69,26 @@ RSpec.describe AlertsController, type: :controller do
         Alert.destroy_all
       end
       it "creates a new Alert" do
+        AlertsController.any_instance.stubs(:current_user).returns(User.new(id: users(:one).id))
+
+        valid_attributes.delete(:user_id)
         expect {
           post :create, {:alert => valid_attributes}, valid_session
         }.to change(Alert, :count).by(1)
       end
 
       it "assigns a newly created alert as @alert" do
+        AlertsController.any_instance.stubs(:current_user).returns(User.new(id: users(:one).id))
+        valid_attributes.delete(:user_id)
+
         post :create, {:alert => valid_attributes}, valid_session
         expect(assigns(:alert)).to be_a(Alert)
         expect(assigns(:alert)).to be_persisted
       end
 
       it "returns created code" do
+        AlertsController.any_instance.stubs(:current_user).returns(User.new(id: users(:one).id))
+        valid_attributes.delete(:user_id)
         post :create, {:alert => valid_attributes}, valid_session
         expect(response).to have_http_status(:created)
       end
@@ -88,11 +96,13 @@ RSpec.describe AlertsController, type: :controller do
 
     context "with invalid params" do
       it "assigns a newly created but unsaved alert as @alert" do
-        post :create, {:alert => invalid_attributes}, valid_session
-        expect(assigns(:alert)).to be_a_new(Alert)
+        expect {
+          post :create, {:alert => invalid_attributes}, valid_session
+        }.to change(Alert, :count).by(0)
       end
 
       it "returns unprocessable_entity code" do
+        AlertsController.any_instance.stubs(:current_user).returns(User.new(id: users(:one).id))
         post :create, {:alert => invalid_attributes}, valid_session
         expect(response).to have_http_status(:unprocessable_entity)
       end

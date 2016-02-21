@@ -1,5 +1,6 @@
 class ScoresController < ApplicationController
   include RestApiConcerns
+  before_action :authenticate, if: "Rails.env.production? || Rails.env.development?"
   before_action :set_score, only: [:show, :edit, :update, :destroy]
 
   # GET /scores
