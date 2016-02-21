@@ -131,7 +131,6 @@ RSpec.describe PathsController, type: :controller do
 
       it "returns unprocessable_entity code" do
         path = Path.create! valid_attributes
-        p invalid_attributes
         put :update, {:id => path.to_param, :path => invalid_attributes}, valid_session
         expect(response).to have_http_status(:unprocessable_entity)
       end
