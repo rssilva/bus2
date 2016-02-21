@@ -1,4 +1,33 @@
 BUS2.SearchView = React.createClass({
+  countrySelected: 0,
+  stateSelected: 0,
+  country: "Brasil",
+  _state: "Rio Grande do Sul",
+  city: "Porto Alegre",
+
+  getInitialState: function () {
+    return {
+      country: <BUS2.SearchInput className="search-input" id="country" placeholder="Selecione um país" name="country" value={this.country} clickCallback={this.onClickInput} />,
+      state: <BUS2.SearchInput className="search-input" id="state" placeholder="Selecione um estado" name="state" value={this._state} clickCallback={this.onClickInput} />,
+      city: <BUS2.SearchInput className="search-input" id="city" placeholder="Selecione uma cidade" name="city" value={this.city} clickCallback={this.onClickInput} />
+    }
+  },
+
+  getCountrySelected: function() {
+    return countrySelected;
+  },
+
+  setCountrySelected: function(country) {
+    this.countrySelected = country;
+  },
+
+  getStateSelected: function() {
+    return this.stateSelected;
+  },
+
+  setStateSelected: function(state) {
+    this.stateSelected = state;
+  },
 
   searchHandler: function(event) {
     event.preventDefault();
@@ -6,8 +35,6 @@ BUS2.SearchView = React.createClass({
     var inputCountry = ReactDOM.findDOMNode($('#country')[0]),
         inputState = ReactDOM.findDOMNode($('#state')[0]),
         inputCity = ReactDOM.findDOMNode($('#city')[0]);
-
-
 
   },
 
@@ -19,6 +46,16 @@ BUS2.SearchView = React.createClass({
       });
 
     }
+  },
+
+  onClickInput: function (type, name, id) {
+    // if (type === "country") {
+
+    // } else if (type === "state") {
+
+    // } else if (type === "city") {
+
+    // }
   },
 
   render: function () {
@@ -43,9 +80,9 @@ BUS2.SearchView = React.createClass({
         <div className="bus2-search-content">
           <h2>Encontre seu ônibus em tempo real</h2>
           <form action="" onSubmit={this.searchHandler}>
-            <BUS2.SearchInput className="search-input" id="country" placeholder="Selecione um país" name="country" />
-            <BUS2.SearchInput className="search-input" id="state" placeholder="Selecione um estado" name="state" />
-            <BUS2.SearchInput className="search-input" id="city" placeholder="Selecione uma cidade" name="city" />
+            {this.state.country}
+            {this.state.state}
+            {this.state.city}
 
             <a className="share-gps" onClick={this.shareGPS}>Compartilhe sua localização</a>
 

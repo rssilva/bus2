@@ -44,6 +44,7 @@
   .bus-line-wrapper {
     margin: 20px auto;
     width: 70%;
+    display: none;
   }
 
   .bus-line-select {
@@ -87,7 +88,7 @@
   }
 
   .bus2-search-content {
-    display: none;
+    // display: none;
   }
   
   .bus2-searching {
@@ -109,6 +110,7 @@
   }
 
   .bus2-search-not-found {
+    display: none;
     .bus2-search-not-found-wrapper {
       width: 100%;
       @include align-all();
@@ -159,6 +161,37 @@
       }
     }
 
+  }
+
+  .input-wrapper {
+    position: relative;
+
+    .input-list-data {
+      width: 255px;
+      list-style: none;
+      text-align: center;
+      @include align-horizontally();
+      position: absolute;
+      top: 30px;
+      background: #fff;
+      z-index: 10;
+      max-height: 120px;
+      overflow-y: scroll;
+
+      li {
+        height: 30px;
+        line-height: 30px;
+        border-bottom: 1px solid #eee;
+        font-size: 12px;
+        cursor: pointer;
+
+        span {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
   }
 
 }
