@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  mount Knock::Engine => "/knock"
+
   resources :scores
   resources :alerts
   resources :paths
@@ -11,6 +14,7 @@ Rails.application.routes.draw do
   post 'user/login'=> 'users#login'
 
   root 'home#index'
+
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do

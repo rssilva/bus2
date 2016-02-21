@@ -141,6 +141,10 @@ GEM
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    knock (1.4.2)
+      bcrypt (~> 3.1)
+      jwt (~> 1.5)
+      rails (>= 4.2)
     koala (2.2.0)
       addressable
       faraday
@@ -290,6 +294,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jwt
+  knock
   koala
   mocha
   pg
