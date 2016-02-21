@@ -1,0 +1,29 @@
+.register-form-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin-top: 90px;
+  height: calc(100% - 120px);
+  text-align: center;
+
+  @include transition(all .3s $ease-out-quart);
+  // @include transform(translateY(-100%));
+  @include background (linear-gradient(0deg, rgb(0,184,65) 0%, rgb(0,205,72) 100%));
+
+  .register-form {
+    .label {
+      display: block;
+      margin: 0 auto 5px auto;
+      color: #fff;
+    }
+
+    input {
+      display: block;
+      width: 256px;
+      height: 30px;
+      margin: 0 auto 5px auto;
+    }
+  }
+}

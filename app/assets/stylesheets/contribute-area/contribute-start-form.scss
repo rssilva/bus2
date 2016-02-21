@@ -5,7 +5,7 @@
   left: 0;
   bottom: 0;
   margin-top: 90px;
-  // height: calc(100% - 120px);
+  height: calc(100% - 120px);
   text-align: center;
 
   @include transition(all .3s $ease-out-quart);
@@ -14,12 +14,6 @@
 
 
   .contribute-start-form {
-    // position: absolute;
-    // top: 0;
-    // right: 0;
-    // left: 0;
-    // bottom: 0;
-    // height: calc(100% - 120px);
 
     .main-label {
       display: block;

@@ -6,7 +6,7 @@
       this.setEvents();
 
       return {
-        className: 'contribute-start-form hidden',
+        className: 'contribute-start-form',
         parent: $('.contribute-start-form-container')
       }
     },
@@ -15,22 +15,20 @@
       var that = this;
 
       Eventer.on('contributeClick', function () {
-        that.toggleVisibility();
+        // that.toggleVisibility();
       });
     },
 
-    toggleVisibility: function () {
-      var isHidden = (/hidden/).test(this.state.className);
+    onStartClick: function () {
+      Eventer.trigger('contributeStartClick');
+    },
 
-      if (isHidden) {
-        this.setState({className: 'contribute-start-form'});
-        this.state.parent.removeClass('hidden');
-      }
+    componentDidMount: function () {
+      this.state.parent.removeClass('hidden');
+    },
 
-      if (!isHidden) {
-        this.setState({className: 'contribute-start-form hidden'});
-        this.state.parent.addClass('hidden');
-      }
+    componentWillUnmount: function () {
+      this.state.parent.addClass('hidden');
     },
 
     render: function () {
@@ -43,8 +41,8 @@
           <div>
             <input className="busline" placeholder="Selecione uma linha"></input>
           </div>
-          <button className="start-contribute-button">
-            Começar
+          <button className="start-contribute-button" onClick={this.onStartClick}>
+            Start
           </button>
         </div>
       )
