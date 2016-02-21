@@ -3,16 +3,46 @@
   right: 0;
   left: 0;
   height: calc(100% - 120px);
-  @include transition(all .3s $ease-out-quart);
+  @include transition(all .8s $ease-out-quart);
   @include transform(translateY(-100%));
   @include background (linear-gradient(0deg, #009bf3 0%, #49bdff 100%));
-  opacity: 0.9;
+  opacity: 0;
+  overflow: hidden;
 
   &.on {
-    @include transition(all .3s $ease-out-quart);
+    @include transition(all .8s $ease-out-quart);
     @include transform(translateY(0));
+    opacity: 0.9;
   }
 
+  .bus2-nav-content {
+    width: 200%;
+    height: 350px;
+
+    .bus2-nav-content-about,
+    .bus2-nav-content-how-it-works {
+      width: 375px;
+      height: 100%;
+      float: left;
+    }
+
+    &.about {
+      @include transition(all .5s $ease-out-quart);
+      @include transform(translateX(0));
+    }
+
+    &.how-it-works {
+      @include transition(all .5s $ease-out-quart);
+      @include transform(translateX(-375px));
+    }
+
+    .bus2-nav-content-about {
+      color: #fff;
+      text-align: center;
+      text-transform: uppercase;
+      line-height: 350px;
+    }
+  }
 
   .bus2-nav-links {
     margin: 20px auto;
@@ -33,6 +63,7 @@
         margin-right: 7px;
         font-size: 14px;
         text-transform: uppercase;
+        cursor: pointer;
       }
 
       &:first-child {
@@ -59,10 +90,9 @@
     }
   }
 
-
   .bus2-steps {
     display: table;
-    margin: 30px auto;
+    margin: 0 auto 30px;
     padding: 0 20px;
 
     li {
@@ -94,7 +124,6 @@
       }
     }
   }
-
 
   .headline {
     display: block;
@@ -151,11 +180,6 @@
     line-height: 37px;
     text-decoration: none;
     text-align: center;
+    cursor: pointer;
   }
-
-
-
-
-
-
 }

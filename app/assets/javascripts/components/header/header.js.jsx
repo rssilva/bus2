@@ -27,12 +27,13 @@ BUS2.Header = React.createClass({
 
     ReactDOM.render(<BUS2.Nav />, $('.bus2-nav')[0]);
     this.setState({isMenuOpen: true});
+    BUS2.mainContainer.find('.bus2-nav').addClass('on');      
     BUS2.mainContainer.find('.bus2-header').toggleClass('select-menu');
   },
 
   closeMenu: function() {
-    ReactDOM.unmountComponentAtNode($('.bus2-nav')[0]);
     this.setState({isMenuOpen: false});
+    BUS2.mainContainer.find('.bus2-nav').removeClass('on');
     BUS2.mainContainer.find('.bus2-header').toggleClass('select-menu');
   },
 
