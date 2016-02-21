@@ -29,7 +29,7 @@
         data: data
       }).done(function (data) {
         console.log(data)
-        that.onLoginSuccess()
+        that.onLoginSuccess();
       });
 
       ev.preventDefault();
