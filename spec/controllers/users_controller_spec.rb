@@ -37,11 +37,15 @@ RSpec.describe UsersController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #index" do
-    it "assigns all users as @users" do
+    it "assigns all users as @users", lata:true do
       User.destroy_all
       user = User.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:users)).to eq([user])
+
+      users = JSON.parse(User.all.to_json)
+      users[0].delete("password_digest")
+      users[0].delete("facebook_id")
+      expect(JSON.parse(response.body)).to eq(users)
     end
   end
 

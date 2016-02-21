@@ -6,7 +6,10 @@ class AlertsController < ApplicationController
   # GET /alerts
   # GET /alerts.json
   def index
-    @alerts = Alert.all
+    limit = params[:limit]||10
+    offset = params[:offset]||0
+    alerts = Alert.limit(limit).offset(offset)
+    render json: alerts, status: :ok
   end
 
   # GET /lines/1

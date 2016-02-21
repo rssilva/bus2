@@ -43,7 +43,7 @@ RSpec.describe PathsController, type: :controller do
       Path.destroy_all
       path = Path.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:paths)).to eq([path])
+      expect(response.body).to eq(Path.all.to_json)
     end
   end
 

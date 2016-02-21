@@ -5,7 +5,10 @@ class PathsController < ApplicationController
   # GET /paths
   # GET /paths.json
   def index
-    @paths = Path.all
+    limit = params[:limit]||10
+    offset = params[:offset]||0
+    paths = Path.limit(limit).offset(offset)
+    render json: paths, status: :ok
   end
 
   # GET /paths/1

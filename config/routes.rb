@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   post 'facebook/callback'=> 'users#facebook'
+  post 'user/login'=> 'users#login'
 
   root 'home#index'
 

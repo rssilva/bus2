@@ -41,7 +41,7 @@ RSpec.describe ScoresController, type: :controller do
     it "assigns all scores as @scores" do
       score = Score.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:scores)).to eq([score])
+      expect(response.body).to eq(Score.all.to_json)
     end
   end
 
