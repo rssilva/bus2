@@ -19,4 +19,16 @@
     BUS2.MapComponent.setUserMarker(lat, lng);
   });
 
+  BUS2.Eventer.on('loginSuccessful', function (ev, data) {
+    console.log(data)
+  });
+
+  var interval;
+
+  function sendColaborateData () {
+    interval = setInterval(function () {
+      
+    }, 10000);
+  }
+
 })();
