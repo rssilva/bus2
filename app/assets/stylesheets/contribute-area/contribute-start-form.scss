@@ -1,0 +1,51 @@
+.contribute-start-form-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin-top: 90px;
+  // height: calc(100% - 120px);
+  text-align: center;
+
+  @include transition(all .3s $ease-out-quart);
+  // @include transform(translateY(-100%));
+  @include background (linear-gradient(0deg, rgb(0,184,65) 0%, rgb(0,205,72) 100%));
+
+
+  .contribute-start-form {
+    // position: absolute;
+    // top: 0;
+    // right: 0;
+    // left: 0;
+    // bottom: 0;
+    // height: calc(100% - 120px);
+
+    .main-label {
+      display: block;
+      width: 142px;
+      margin: 0 auto 15px auto;
+      color: #fff;
+      font-size: 15px;
+    }
+
+    .busline {
+      width: 256px;
+      height: 30px;
+      margin: 0 0 8px 0;
+      padding: 0 0 0 32px;
+      font-size: 13px;
+    }
+
+    .start-contribute-button {
+      height: 29px;
+      width: 165px;
+      background-color: #49bdff;
+      border: 0;
+      border-radius: 30px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+  }
+
+}
