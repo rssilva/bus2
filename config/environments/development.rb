@@ -38,4 +38,15 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  #Caches
+  # config.cache_store = :redis_store, ENV["REDISCLOUD_URL"]+'/0/cache', { expires_in: 90.minutes,size: 64.megabytes }
+  # config.action_dispatch.rack_cache = {
+  #     metastore: ENV["REDISCLOUD_URL"]+"/0/metastore",
+  #     entitystore: ENV["REDISCLOUD_URL"]+"/0/entitystore"
+  # }
+
+  Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['SEARCHBOX_SSL_URL'], log: false
+
+
 end

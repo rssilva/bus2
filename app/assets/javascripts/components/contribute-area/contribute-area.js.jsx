@@ -6,46 +6,103 @@
       this.setEvents();
 
       return {
-        isOpen: false
+        isOpen: false,
+        firstForm: '',
+        loginForm: '',
+        registerForm: '',
       }
-    },
-
-    onClick: function (ev) {
-      var isOpen = this.state.isOpen;
-
-      if (isOpen) {
-        this.setState({isOpen: false})
-        window.location.hash = '#/';
-        Eventer.trigger('contributeClick');
-      }
-
-      if (!isOpen) {
-        this.setState({isOpen: true})
-        window.location.hash = '#/contribute/set';
-        Eventer.trigger('contributeClick');
-      }
-
-      ev.stopPropagation();
     },
 
     setEvents: function () {
       var that = this;
 
       Eventer.on('setContribution', function () {
-        that.setState({isOpen: true});
+        // that.setContribution();
       });
+
+      Eventer.on('contributeClick', function () {
+        that.onContributeClick();
+      });
+
+      Eventer.on('contributeStartClick', function () {
+        that.onStartClick();
+      });
+    },
+
+    onContributeClick: function () {
+      this.setContribution();
+    },
+
+    onStartClick: function () {
+      if (BUS2.isLogged) {
+
+      }
+
+      if (!BUS2.isLogged) {
+        this.renderFirstForm(false);
+        this.renderRegisterForm(false);
+        this.renderLoginForm(true);
+      }
+    },
+
+    setContribution: function () {
+      var isOpen = this.state.isOpen;
+
+      if (isOpen) {
+        this.setState({isOpen: false})
+        this.renderFirstForm(false);
+      }
+
+      if (!isOpen) {
+        this.setState({isOpen: true});
+        this.renderFirstForm(true);
+      }
+    },
+
+    renderFirstForm: function (shouldRender) {
+      if (shouldRender) {
+        this.setState({firstForm: <BUS2.ContributeStartForm />});
+      }
+
+      if (!shouldRender) {
+        this.setState({firstForm: ''});
+      }
+    },
+
+    renderRegisterForm: function (shouldRender) {
+      if (shouldRender) {
+        this.setState({registerForm: <BUS2.RegisterForm />});
+      }
+
+      if (!shouldRender) {
+        this.setState({registerForm: ''});
+      }
+    },
+
+    renderLoginForm: function (shouldRender) {
+      if (shouldRender) {
+        this.setState({loginForm: <BUS2.LoginForm />});
+      }
+
+      if (!shouldRender) {
+        this.setState({loginForm: ''});
+      }
     },
 
     render: function () {
       return (
         <div className="contribute-area">
-          <div className="contribute-button" onClick={this.onClick} >
-            <button className="contribute-button" onClick={this.onClick} >
-              <svg className="contribute-bus">
-                <use xlinkHref="#contribute-bus"></use>
-              </svg>
-              <span className="label">Contribute</span>
-            </button>
+          <div className="contribute-start-form-container hidden">
+            {this.state.firstForm}
+          </div>
+          <div className="login-form-container hidden">
+            {this.state.loginForm}
+          </div>
+          <div className="register-form-container hidden">
+            {this.state.registerForm}
+          </div>
+          <div className="login-form-container hidden">
+            {this.state.loginForm}
           </div>
         </div>
       )
