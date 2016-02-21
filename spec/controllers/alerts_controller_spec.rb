@@ -70,8 +70,8 @@ RSpec.describe AlertsController, type: :controller do
       end
       it "creates a new Alert" do
         AlertsController.any_instance.stubs(:current_user).returns(User.new(id: users(:one).id))
-
         valid_attributes.delete(:user_id)
+        
         expect {
           post :create, {:alert => valid_attributes}, valid_session
         }.to change(Alert, :count).by(1)

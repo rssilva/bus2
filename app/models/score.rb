@@ -2,7 +2,7 @@ class Score < ActiveRecord::Base
   belongs_to :user
 
   validates :user, :user_id, presence: true, allow_blank: false
-  validates_uniqueness_of :user
+  validates_uniqueness_of :user, :user_id
 
   before_save :add_hit
 

@@ -29,7 +29,7 @@ RSpec.describe ScoresController, type: :controller do
   }
 
   let(:invalid_attributes) {
-    {:user_id => ''}
+    {:chalala => ''}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -56,6 +56,9 @@ RSpec.describe ScoresController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Score" do
+        ScoresController.any_instance.stubs(:current_user).returns(User.new(id: users(:one).id))
+        valid_attributes.delete(:user_id)
+
         expect {
           post :create, {:score => valid_attributes}, valid_session
         }.to change(Score, :count).by(1)
@@ -65,39 +68,52 @@ RSpec.describe ScoresController, type: :controller do
         time_now = Time.parse("Feb 24 1981")
         Time.stubs(:now).returns(time_now)
 
+        user_id = valid_attributes[:user_id]
+        ScoresController.any_instance.stubs(:current_user).returns(User.new(id: users(:one).id))
+        valid_attributes.delete(:user_id)
+
         post :create, {:score => valid_attributes}, valid_session
-        expect(Score.find_by_user_id(valid_attributes[:user_id]).hits).to eq(1)
-        expect(Score.find_by_user_id(valid_attributes[:user_id]).last_hit).to eq(time_now)
+        expect(Score.find_by_user_id(user_id).hits).to eq(1)
+        expect(Score.find_by_user_id(user_id).last_hit).to eq(time_now)
       end
 
       it "updates hits by 1 when score exists" do
+        user_id = valid_attributes[:user_id]
+        ScoresController.any_instance.stubs(:current_user).returns(User.new(id: users(:one).id))
+        valid_attributes.delete(:user_id)
 
         post :create, {:score => valid_attributes}, valid_session
-        expect(Score.find_by_user_id(valid_attributes[:user_id]).hits).to eq(1)
+        expect(Score.find_by_user_id(user_id).hits).to eq(1)
         post :create, {:score => valid_attributes}, valid_session
-        expect(Score.find_by_user_id(valid_attributes[:user_id]).hits).to eq(2)
+        expect(Score.find_by_user_id(user_id).hits).to eq(2)
       end
 
       it "assigns a newly created score as @score" do
+        ScoresController.any_instance.stubs(:current_user).returns(User.new(id: users(:one).id))
+        valid_attributes.delete(:user_id)
         post :create, {:score => valid_attributes}, valid_session
         expect(assigns(:score)).to be_a(Score)
         expect(assigns(:score)).to be_persisted
       end
 
       it "returns created code" do
+        ScoresController.any_instance.stubs(:current_user).returns(User.new(id: users(:one).id))
+        valid_attributes.delete(:user_id)
         post :create, {:score => valid_attributes}, valid_session
         expect(response).to have_http_status(:created)
       end
     end
 
     context "with invalid params" do
-      it "should not persist user" do
+      it "should not persist score" do
         expect {
+          ScoresController.any_instance.stubs(:current_user).returns(User.new(id: nil))
           post :create, {:score => invalid_attributes}, valid_session
         }.to change(Score, :count).by(0)
       end
 
       it "returns unprocessable_entity" do
+        ScoresController.any_instance.stubs(:current_user).returns(User.new(id: nil))
         post :create, {:score => invalid_attributes}, valid_session
         expect(response).to have_http_status(:unprocessable_entity)
       end
