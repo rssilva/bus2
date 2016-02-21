@@ -12,6 +12,7 @@ class AlertsController < ApplicationController
   # GET /lines/1
   # GET /lines/1.json
   def show
+    render json: @alert,  status: :ok
   end
 
   # POST /alerts

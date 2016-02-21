@@ -11,6 +11,7 @@ class PathsController < ApplicationController
   # GET /paths/1
   # GET /paths/1.json
   def show
+    render json: @path,  status: :ok
   end
 
   # POST /paths

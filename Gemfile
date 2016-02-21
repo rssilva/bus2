@@ -18,8 +18,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 # Databases
 gem 'pg'
-gem 'elasticsearch'
-gem 'elasticsearch-model'
+# gem 'elasticsearch'
+# gem 'elasticsearch-model'
 gem 'redis'
 
 # Use jquery as the JavaScript library
@@ -59,6 +59,10 @@ gem 'bcrypt'
 #API REST
 gem 'rabl'
 gem 'jwt' #API Auth
+
+#Searcher
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 
 group :development, :test do

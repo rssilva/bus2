@@ -11,6 +11,7 @@ class ScoresController < ApplicationController
   # GET /scores/1
   # GET /scores/1.json
   def show
+    render json: @score,  status: :ok
   end
 
   # POST /scores
