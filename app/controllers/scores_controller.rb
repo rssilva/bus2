@@ -1,5 +1,6 @@
 class ScoresController < ApplicationController
   include RestApiConcerns
+  before_action :authenticate, if: "Rails.env.production? || Rails.env.development?"
   before_action :set_score, only: [:show, :edit, :update, :destroy]
 
   # GET /scores
@@ -20,8 +21,8 @@ class ScoresController < ApplicationController
   # POST /scores
   # POST /scores.json
   def create
-    @score = Score.find_by_user_id(score_params[:user_id])
-    @score = Score.new(score_params) unless @score
+    @score = Score.find_by_user_id(current_user.id)
+    @score = Score.new({:user_id => current_user.id}) unless @score
 
     if @score.save
       render json: @score, status: :created
@@ -44,7 +45,7 @@ class ScoresController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def score_params
-      params.require(:score).permit(:user_id)
-    end
+    # def score_params
+    #   params.require(:score).permit(:user_id)
+    # end
 end

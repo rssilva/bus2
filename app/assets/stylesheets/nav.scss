@@ -62,7 +62,7 @@
         border-right: 1px solid #fff;
         padding-right: 7px;
         margin-right: 7px;
-        font-size: 14px;
+        font-size: 12px;
         text-transform: uppercase;
         cursor: pointer;
       }
@@ -182,5 +182,28 @@
     text-decoration: none;
     text-align: center;
     cursor: pointer;
+  }
+}
+
+
+
+@media screen and (max-width: 320px) {
+  .bus2-nav {
+    .bus2-nav-content {
+      height: 290px;
+
+      .bus2-nav-content-about,
+      .bus2-nav-content-how-it-works {
+        width: 320px;
+      }
+
+      &.how-it-works {
+        @include transition(all .5s $ease-out-quart);
+        @include transform(translateX(-320px));
+      }
+    }
+    .bus2-nav-close {
+      display: none;
+    }
   }
 }

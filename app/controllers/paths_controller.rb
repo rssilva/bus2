@@ -1,5 +1,6 @@
 class PathsController < ApplicationController
   include RestApiConcerns
+  before_action :authenticate, if: "Rails.env.production? || Rails.env.development?"
   before_action :set_path, only: [:show, :edit, :update, :destroy]
 
   # GET /paths
