@@ -34,6 +34,12 @@ Rails.application.routes.draw do
         get 'search', controller: 'line_search', action: :search
       end
 
+      resource :user do
+        get 'location/push/sensor', controller: 'user', action: :location_push
+      end
+
+
+
       #TODO: Construct Routes 2 push GPS sensor data
       #TODO: Construct Routes 2 search LineInstances
 

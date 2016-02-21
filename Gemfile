@@ -64,6 +64,9 @@ gem 'jwt' #API Auth
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
+group :test do
+  gem 'elasticsearch-extensions'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
