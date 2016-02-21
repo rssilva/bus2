@@ -54,13 +54,6 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new user as @user" do
-      get :new, {}, valid_session
-      expect(assigns(:user)).to be_a_new(User)
-    end
-  end
-
   describe "GET #edit" do
     it "assigns the requested user as @user" do
       User.destroy_all

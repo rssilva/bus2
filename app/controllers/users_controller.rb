@@ -15,15 +15,6 @@ class UsersController < ApplicationController
   def show
   end
 
-  # GET /users/new
-  def new
-    @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
-  end
-
   def facebook
     unless params[:user][:fb_token]
       render json: Exception.new('Invalid token'), status: :unprocessable_entity
