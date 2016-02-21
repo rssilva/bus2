@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     @user = User.new(@fb_params||user_params)
 
       if @user.save
-        render json: @user, status: :created
+        render json: @user, :exclude => [:password_digest], status: :created
       else
         render json: @user.errors, status: :unprocessable_entity
       end
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
       if @user.update(user_params)
-        render json: @user, status: :ok
+        render json: @user, :exclude => [:password_digest], status: :ok
       else
         render json: @user.errors, status: :unprocessable_entity
       end
