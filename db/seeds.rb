@@ -29,7 +29,7 @@ if File.exists? "tmp/estados.csv"
   }
 end
 
-country = Country.find_or_create_by({:name => 'Brasil'})
+country = Country.find_or_create_by({:name => 'Brazil'})
 Dir["tmp/csv_cidades_ibge/*.csv"].each{ |file_name|
   if File.exists? file_name
     data = File.read(file_name)
