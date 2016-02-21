@@ -146,23 +146,4 @@ RSpec.describe UsersController, type: :controller do
       end
     end
   end
-
-  describe "DELETE #destroy" do
-    before :each do
-      User.destroy_all
-    end
-    it "destroys the requested user" do
-      user = User.create! valid_attributes
-      expect {
-        delete :destroy, {:id => user.to_param}, valid_session
-      }.to change(User, :count).by(-1)
-    end
-
-    it "returns status no_content" do
-      user = User.create! valid_attributes
-      delete :destroy, {:id => user.to_param}, valid_session
-      expect(response).to have_http_status(:no_content)
-    end
-  end
-
 end

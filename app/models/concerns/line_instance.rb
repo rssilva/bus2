@@ -42,14 +42,14 @@ module LineInstance
     def to_indexed_json
       as_json(
           :only => [ :id, :name ],
-          :methods => [ :last_updated, :state, :country, :users_reporting ]
+          :methods => [ :last_updated, :city,:state, :country, :users_reporting ]
       )
     end
 
     def as_indexed_json(options = {})
       as_json(
           :only => [ :id, :name ],
-          :methods => [ :last_updated, :state, :country, :users_reporting ]
+          :methods => [ :last_updated, :city, :state, :country, :users_reporting ]
       )
     end
 
@@ -58,6 +58,7 @@ module LineInstance
     def last_updated
       @last_update
     end
+
 
     def state
       self.city.state

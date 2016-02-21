@@ -11,12 +11,14 @@ module Api
       def location_push
         city = City.where('name = ?', 'Porto Alegre').first
         ln  = Line.find_or_create_by({:name => permited_params[:line_name], :city_id => city.id})
-        ln.add_user(permited_params[:lat].to_f,permited_params[:lat].to_f, current_user.id)
+        ln.add_user(permited_params[:lat].to_f,permited_params[:lon].to_f, current_user.id)
         ln.__elasticsearch__.index_document
 
         lnRoute = LineRouteLog.new({:line_id => ln.id, :user_id => current_user.id})
-        lnRoute.update_location(permited_params[:lat].to_f,permited_params[:lat].to_f)
+        lnRoute.update_location(permited_params[:lat].to_f,permited_params[:lon].to_f)
         lnRoute.__elasticsearch__.index_document
+
+        render json: lnRoute, status: :ok
       end
 
       def location_retrieve

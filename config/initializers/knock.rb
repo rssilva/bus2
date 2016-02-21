@@ -42,7 +42,7 @@ Knock.setup do |config|
   ## How long before a token is expired.
   ##
   ## Default:
-  # config.token_lifetime = 1.day
+  config.token_lifetime = 1.day
 
 
   ## Audience claim

@@ -19,16 +19,48 @@
     BUS2.MapComponent.setUserMarker(lat, lng);
   });
 
+  var busLine;
+  var TOKEN;
+
   BUS2.Eventer.on('loginSuccessful', function (ev, data) {
-    console.log(data)
+    TOKEN = data.jwt;
+    sendColaborateData();
+    startColaborateData();
+  });
+
+  BUS2.Eventer.on('contributeStartClick', function (ev, data) {
+    busLine = data.busLine;
   });
 
   var interval;
 
-  function sendColaborateData () {
+  function startColaborateData () {
     interval = setInterval(function () {
-      
+      sendColaborateData();
     }, 10000);
+  }
+
+  function sendColaborateData () {
+    BUS2.LocationHandler.getCurrentPosition(function (lat, lng) {
+      execRequest(lat, lng)
+    });
+  }
+
+  function execRequest (lat, lng) {
+    $.ajax({
+      type: 'POST',
+      url: '/api/v1/user/location/push/sensor',
+      beforeSend: function (request) {
+        request.setRequestHeader('Authorization', TOKEN);
+      },
+      data: {
+        line_name: busLine,
+        lat: lat,
+        lon: lng
+      }
+    }).done(function (data) {
+      console.log(data)
+    })
   }
 
 })();

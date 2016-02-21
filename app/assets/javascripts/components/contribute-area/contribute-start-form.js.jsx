@@ -7,7 +7,8 @@
 
       return {
         className: 'contribute-start-form',
-        parent: $('.contribute-start-form-container')
+        parent: $('.contribute-start-form-container'),
+        busLine: ''
       }
     },
 
@@ -20,7 +21,11 @@
     },
 
     onStartClick: function () {
-      Eventer.trigger('contributeStartClick');
+      Eventer.trigger('contributeStartClick', {busLine: this.state.busLine});
+    },
+
+    onBusLineChange: function (ev) {
+      this.setState({busLine: ev.target.value})
     },
 
     componentDidMount: function () {
@@ -39,7 +44,7 @@
             <span className="location"></span>
           </div>
           <div>
-            <input className="busline" placeholder="Selecione uma linha"></input>
+            <input className="busline" placeholder="Selecione uma linha" onChange={this.onBusLineChange}></input>
           </div>
           <button className="start-contribute-button" onClick={this.onStartClick}>
             Start

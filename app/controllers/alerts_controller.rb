@@ -10,7 +10,7 @@ class AlertsController < ApplicationController
   def index
     limit = params[:limit]||10
     offset = params[:offset]||0
-    alerts = Alert.limit(limit).offset(offset)
+    alerts = Alert.where({:user_id => current_user.id}).limit(limit).offset(offset)
     render json: alerts, status: :ok
   end
 
@@ -27,16 +27,6 @@ class AlertsController < ApplicationController
 
       if @alert.save
         render json: @alert, status: :created
-      else
-        render json: @alert.errors, status: :unprocessable_entity
-      end
-  end
-
-  # PATCH/PUT /alerts/1
-  # PATCH/PUT /alerts/1.json
-  def update
-      if @alert.update(alert_params)
-        render json: @alert, status: :ok
       else
         render json: @alert.errors, status: :unprocessable_entity
       end
