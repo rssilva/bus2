@@ -19,7 +19,7 @@ class LinesController < ApplicationController
     @line = Line.new(line_params)
 
       if @line.save
-        render :show, status: :created, location: @line
+        render json: @line, status: :created
       else
         render json: @line.errors, status: :unprocessable_entity
       end
@@ -29,7 +29,7 @@ class LinesController < ApplicationController
   # PATCH/PUT /lines/1.json
   def update
       if @line.update(line_params)
-        render :show, status: :ok, location: @line
+        render json: @line, status: :ok
       else
         render json: @line.errors, status: :unprocessable_entity
       end

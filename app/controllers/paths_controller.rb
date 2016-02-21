@@ -18,7 +18,7 @@ class PathsController < ApplicationController
   def create
     @path = Path.new(path_params)
       if @path.save
-         render :show, status: :created, location: @path
+         render json: @path, status: :created
       else
         render json: @path.errors, status: :unprocessable_entity
       end
