@@ -31,6 +31,10 @@
       Eventer.on('contributeRegisterClick', function () {
         that.onRegisterClick();
       });
+
+      Eventer.on('loginSuccessful', function () {
+        that.onLoginSuccessful();
+      });
     },
 
     onContributeClick: function () {
@@ -52,6 +56,12 @@
     onRegisterClick: function () {
       this.renderFirstForm(false);
       this.renderRegisterForm(true);
+      this.renderLoginForm(false);
+    },
+
+    onLoginSuccessful: function () {
+      this.renderFirstForm(false);
+      this.renderRegisterForm(false);
       this.renderLoginForm(false);
     },
 

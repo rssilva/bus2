@@ -9,13 +9,12 @@
     },
 
     submit: function (ev) {
-      var form, email, password;
-      ev.preventDefault();
+      var that = this;
 
-      form = $('.login-form');
+      var form = $('.login-form');
 
-      email = ReactDOM.findDOMNode(form.find('.email')[0]);
-      password = ReactDOM.findDOMNode(form.find('.password')[0]);
+      var email = ReactDOM.findDOMNode(form.find('.email')[0]);
+      var password = ReactDOM.findDOMNode(form.find('.password')[0]);
 
       var data = {
         user: {
@@ -23,14 +22,21 @@
           password: password.value,
         }
       };
-      console.log(data)
+
       $.ajax({
         url: '/user/login',
         type: 'POST',
         data: data
       }).done(function (data) {
         console.log(data)
-      })
+        that.onLoginSuccess()
+      });
+
+      ev.preventDefault();
+    },
+
+    onLoginSuccess: function (data) {
+      Eventer.trigger('loginSuccessful');
     },
 
     onRegisterClick: function () {

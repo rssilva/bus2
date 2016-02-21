@@ -9,14 +9,6 @@
 
   ReactDOM.render(<BUS2.ContributeArea />, $('.contribute-area-container')[0]);
 
-  var showAuthorInfo = function () {
-    console.log("showAuthorInfo");
-  };
-
-  var listBooks = function () {
-    console.log("listBooks");
-  };
-
   var routes = {
     '/contribute': function () {
 
@@ -31,5 +23,13 @@
   });
 
   BUS2.router.init();
+
+  BUS2.LocationHandler.init();
+
+  setInterval(function () {
+    BUS2.LocationHandler.getCurrentPosition(function (lat, lng) {
+
+    });
+  }, 5000)
 
 })();
