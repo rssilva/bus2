@@ -32,6 +32,10 @@
       })
     },
 
+    onRegisterClick: function () {
+      Eventer.trigger('contributeRegisterClick');
+    },
+
     componentDidMount: function () {
       this.state.parent.removeClass('hidden');
     },
@@ -42,13 +46,18 @@
 
     render: function () {
       return (
-        <form className="login-form" onSubmit={this.submit}>
-          <span className="label">Email:</span>
-          <input className="email"></input>
-          <span className="label">Password:</span>
-          <input className="password"></input>
-          <input type="submit" value="Login"/>
-        </form>
+        <div>
+          <form className="login-form" onSubmit={this.submit}>
+            <span className="label">Email:</span>
+            <input className="email"></input>
+            <span className="label">Password:</span>
+            <input className="password"></input>
+            <input type="submit" value="Login"/>
+          </form>
+          <button className="register-contribute-button" onClick={this.onRegisterClick}>
+            Register
+          </button>
+        </div>
       );
     }
   });

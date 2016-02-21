@@ -13,6 +13,7 @@
       ev.preventDefault();
 
       form = $('.register-form');
+
       var name = ReactDOM.findDOMNode(form.find('.name')[0]);
       var email = ReactDOM.findDOMNode(form.find('.email')[0]);
       var password = ReactDOM.findDOMNode(form.find('.password')[0]);
