@@ -1,6 +1,6 @@
 module Api
   module V1
-    class CountryController < ApplicationController
+    class CountryController < ApiApplicationController
 
       def find_match
         @countries = Country.where('name like ?', permited_params[:letters]+'%')

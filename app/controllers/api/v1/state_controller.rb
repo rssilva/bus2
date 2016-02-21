@@ -1,6 +1,6 @@
 module Api
   module V1
-    class StateController < ApplicationController
+    class StateController < ApiApplicationController
       def find_match
         @states = State.where('country_id = ? and name like ?', permited_params[:country_id], permited_params[:letters]+'%')
         render 'api/v1/state/find'

@@ -1,6 +1,6 @@
 module Api
   module V1
-    class CityController < ApplicationController
+    class CityController < ApiApplicationController
       def find_match
         @cities = City.where('state_id = ? and name like ?', permited_params[:state_id], permited_params[:letters]+'%')
         render 'api/v1/city/find'

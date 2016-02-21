@@ -57,6 +57,7 @@ gem 'bcrypt'
 
 #API REST
 gem 'rabl'
+gem 'jwt' #API Auth
 
 
 group :development, :test do
