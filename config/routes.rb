@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
+  post 'facebook/callback'=> 'users#facebook'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -46,6 +46,7 @@ gem 'puma'
 gem 'activeadmin', github: 'gregbell/active_admin'
 # Plus integrations with:
 gem 'devise'
+gem "koala"
 # gem 'cancan' # or cancancan
 # gem 'draper'
 # gem 'pundit'
