@@ -111,9 +111,6 @@
           <div className="register-form-container hidden">
             {this.state.registerForm}
           </div>
-          <div className="login-form-container hidden">
-            {this.state.loginForm}
-          </div>
         </div>
       )
     }

@@ -9,12 +9,13 @@
     },
 
     submit: function (ev) {
-      var form;
+      var form, email, password;
       ev.preventDefault();
 
       form = $('.login-form');
-      var email = ReactDOM.findDOMNode(form.find('.email')[0]);
-      var password = ReactDOM.findDOMNode(form.find('.password')[0]);
+
+      email = ReactDOM.findDOMNode(form.find('.email')[0]);
+      password = ReactDOM.findDOMNode(form.find('.password')[0]);
 
       var data = {
         user: {
@@ -22,9 +23,9 @@
           password: password.value,
         }
       };
-
+      console.log(data)
       $.ajax({
-        url: '/users',
+        url: '/user/login',
         type: 'POST',
         data: data
       }).done(function (data) {
