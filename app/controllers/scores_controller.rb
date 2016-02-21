@@ -31,13 +31,6 @@ class ScoresController < ApplicationController
     end
   end
 
-  # DELETE /scores/1
-  # DELETE /scores/1.json
-  def destroy
-    @score.destroy
-    head :no_content
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_score

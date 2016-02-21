@@ -120,19 +120,4 @@ RSpec.describe ScoresController, type: :controller do
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested score" do
-      score = Score.create! valid_attributes
-      expect {
-        delete :destroy, {:id => score.to_param}, valid_session
-      }.to change(Score, :count).by(-1)
-    end
-
-    it "returns no_content" do
-      score = Score.create! valid_attributes
-      delete :destroy, {:id => score.to_param}, valid_session
-      expect(response).to have_http_status(:no_content)
-    end
-  end
-
 end

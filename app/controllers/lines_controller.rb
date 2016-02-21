@@ -30,22 +30,7 @@ class LinesController < ApplicationController
       end
   end
 
-  # PATCH/PUT /lines/1
-  # PATCH/PUT /lines/1.json
-  def update
-      if @line.update(line_params)
-        render json: @line, status: :ok
-      else
-        render json: @line.errors, status: :unprocessable_entity
-      end
-  end
 
-  # DELETE /lines/1
-  # DELETE /lines/1.json
-  def destroy
-    @line.destroy
-    head :no_content
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
