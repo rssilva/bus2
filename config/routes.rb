@@ -29,6 +29,15 @@ Rails.application.routes.draw do
         post 'create', controller: 'city', action: :create
       end
 
+      resource :line_search do
+        get 'search', controller: 'line_search', action: :search
+      end
+
+      #TODO: Construct Routes 2 push GPS sensor data
+      #TODO: Construct Routes 2 search LineInstances
+
+
+
 
     end
   end

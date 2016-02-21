@@ -76,4 +76,15 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+
+  #Caches
+  # config.cache_store = :redis_store, ENV["REDISCLOUD_URL"]+'/0/cache', { expires_in: 90.minutes,size: 64.megabytes }
+  # config.action_dispatch.rack_cache = {
+  #     metastore: ENV["REDISCLOUD_URL"]+"/0/metastore",
+  #     entitystore: ENV["REDISCLOUD_URL"]+"/0/entitystore"
+  # }
+
+  Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['SEARCHBOX_SSL_URL'], log: false
+
 end
