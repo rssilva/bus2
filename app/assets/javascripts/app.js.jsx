@@ -5,6 +5,7 @@
 
   ReactDOM.render(<BUS2.ContributeArea />, $('.contribute-area-container')[0]);
   ReactDOM.render(<BUS2.ContributeButton />, $('.contribute-button-container')[0]);
+  ReactDOM.render(<BUS2.SearchView />, $('.bus2-search-container')[0]);
   // ReactDOM.render(<BUS2.ContributeStartForm />, $('.contribute-start-form-container')[0]);
 
   ReactDOM.render(<BUS2.ContributeArea />, $('.contribute-area-container')[0]);
@@ -17,5 +18,17 @@
     BUS2.MapComponent.setCenter({lat: lat, lng: lng});
     BUS2.MapComponent.setUserMarker(lat, lng);
   });
+
+  BUS2.Eventer.on('loginSuccessful', function (ev, data) {
+    console.log(data)
+  });
+
+  var interval;
+
+  function sendColaborateData () {
+    interval = setInterval(function () {
+      
+    }, 10000);
+  }
 
 })();

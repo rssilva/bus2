@@ -17,26 +17,26 @@
       var password = ReactDOM.findDOMNode(form.find('.password')[0]);
 
       var data = {
-        user: {
+        auth: {
           email: email.value,
           password: password.value,
         }
       };
 
       $.ajax({
-        url: '/user/login',
+        url: '/knock/auth_token',
         type: 'POST',
         data: data
       }).done(function (data) {
         console.log(data)
-        that.onLoginSuccess()
+        that.onLoginSuccess(data);
       });
 
       ev.preventDefault();
     },
 
     onLoginSuccess: function (data) {
-      Eventer.trigger('loginSuccessful');
+      Eventer.trigger('loginSuccessful', {jwt: data.jwt});
     },
 
     onRegisterClick: function () {
@@ -55,10 +55,10 @@
       return (
         <div>
           <form className="login-form" onSubmit={this.submit}>
-            <span className="label">Email:</span>
+            <span className="label" name="email">Email:</span>
             <input className="email"></input>
             <span className="label">Password:</span>
-            <input className="password"></input>
+            <input className="password" type="password"></input>
             <input type="submit" value="Login"/>
           </form>
           <button className="register-contribute-button" onClick={this.onRegisterClick}>

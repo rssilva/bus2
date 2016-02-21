@@ -15,7 +15,7 @@ BUS2.Header = React.createClass({
   getInitialState: function() {
     return {
       isMenuOpen: false,
-      isSearchSelected: false
+      isSearchSelected: true
     };
   },
 
