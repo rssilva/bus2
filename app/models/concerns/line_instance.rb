@@ -3,10 +3,6 @@ module LineInstance
 
   included do
 
-    def initialize
-      @users_reporting = Array.new
-    end
-
     include Elasticsearch::Model
 
     index_name "lines-#{Rails.env}"
@@ -72,15 +68,24 @@ module LineInstance
     end
 
     def users_reporting
+      if @users_reporting.nil?
+        @users_reporting = Array.new
+      end
       @users_reporting
     end
 
 
     def add_user lat, lon, user_id
-      @users_reporting << Struct.new(:location, :user_id).new([lat, lon, user_id])
+      if @users_reporting.nil?
+        @users_reporting = Array.new
+      end
+      @users_reporting << Struct.new(:location, :user_id).new([lat, lon], user_id)
     end
 
     def rem_user user_id
+      if @users_reporting.nil?
+        @users_reporting = Array.new
+      end
       @users_reporting = @users_reporting.reject{ |r| r[:user_id] == user_id }
     end
 
