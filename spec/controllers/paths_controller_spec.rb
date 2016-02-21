@@ -30,7 +30,7 @@ RSpec.describe PathsController, type: :controller do
   }
 
   let(:invalid_attributes) {
-    {:line_id => nil}
+    {:line_id => ''}
   }
 
   # This should return the minimal set of values that should be in the session
