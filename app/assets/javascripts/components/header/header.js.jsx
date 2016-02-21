@@ -21,8 +21,7 @@ BUS2.Header = React.createClass({
 
   openMenu: function() {
     if (this.state.isSearchSelected) {
-      BUS2.mainContainer.find('.bus2-header').removeClass('select-search');
-      this.setState({isSearchSelected:false});
+      this.closeSearch();
     }
 
     ReactDOM.render(<BUS2.Nav />, $('.bus2-nav')[0]);
@@ -47,19 +46,29 @@ BUS2.Header = React.createClass({
     }
   },
 
+  openSearch: function() {
+    BUS2.mainContainer.find('.bus2-header').addClass('select-search');
+    this.setState({isSearchSelected:true});
+    ReactDOM.render(<BUS2.SearchView />, $('.bus2-search-container')[0]);
+    $('.bus2-search-container').fadeIn(300);
+  },
+
+  closeSearch: function() {
+    BUS2.mainContainer.find('.bus2-header').removeClass('select-search');
+    this.setState({isSearchSelected:false});
+    $('.bus2-search-container').fadeOut(300);
+  },
+
   pinAlertHandler: function() {
     if (this.state.isMenuOpen) {
       this.closeMenu();
     }
     
     if (this.state.isSearchSelected) {
-      BUS2.mainContainer.find('.bus2-header').removeClass('select-search');
-      this.setState({isSearchSelected:false});
+      this.closeSearch();
     } else {
-      BUS2.mainContainer.find('.bus2-header').addClass('select-search');
-      this.setState({isSearchSelected:true});
+      this.openSearch();
     }
-
   },
 
   render: function () {
