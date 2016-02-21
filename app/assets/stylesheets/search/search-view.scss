@@ -4,6 +4,10 @@
   @include background (linear-gradient(0deg, #009bf3 0%, #49bdff 100%));
   padding: 15px 0;
 
+  &.not-found {
+     @include background(rgba(237, 28, 36, 0.9));
+  }
+
   h2 {
     @include font('montserrat-bold');
     color: #ffffff;
@@ -82,9 +86,6 @@
     text-transform: uppercase;
   }
 
-
-
-
   .bus2-search-content {
     display: none;
   }
@@ -95,6 +96,7 @@
     background: url(image_path('bus2-searching.png')) no-repeat center 40%;
     background-size: 50%;
     position: relative;
+    display: none;
 
     span {
       color: #fff;
@@ -104,6 +106,59 @@
       position: absolute;
       width: 100%;
     }
+  }
+
+  .bus2-search-not-found {
+    .bus2-search-not-found-wrapper {
+      width: 100%;
+      @include align-all();
+      position: absolute;
+
+
+      .search-result {
+        @include font('montserrat-bold');
+        font-size: 22px;
+        text-align: center;
+        display: block;
+        width: 70%;
+        color: #fff;
+        margin: 0 auto;
+      }
+
+      .search-btn {
+        position: relative;
+        display: block;
+        margin: 20px auto;
+        width: 210px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 18px / 20px;
+        color: #fff;
+        outline: none;
+        background-color: #1ce061;
+        font-size: 14px;
+        text-transform: uppercase;
+        border: 0;
+
+        span {
+          margin-left: -23px;
+          margin-right: 7px;
+        }
+
+        svg {
+          width: 30px;
+          height: 30px;
+          fill: #fff;
+          @include align-vertically();
+          position: absolute;
+        }
+
+        &:active {
+          outline: none;
+        }
+      }
+    }
+
   }
 
 }

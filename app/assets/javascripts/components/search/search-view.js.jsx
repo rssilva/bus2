@@ -28,6 +28,18 @@ BUS2.SearchView = React.createClass({
           <span>BUSCANDO...</span>
         </div>
 
+        <div className="bus2-search-not-found">
+          <div className="bus2-search-not-found-wrapper">
+            <span className="search-result">NENHUM ÔNIBUS ENCONTRADO</span>
+            <button className="search-btn">
+              Fazer uma busca
+              <svg className="search">
+                <use xlinkHref="#search"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+
         <div className="bus2-search-content">
           <h2>Encontre seu ônibus em tempo real</h2>
           <form action="" onSubmit={this.searchHandler}>
