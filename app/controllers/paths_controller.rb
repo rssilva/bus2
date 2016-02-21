@@ -27,6 +27,7 @@ class PathsController < ApplicationController
   # PATCH/PUT /paths/1
   # PATCH/PUT /paths/1.json
   def update
+    p path_params
       if @path.update(path_params)
         p @path
          render json: @path, status: :ok
