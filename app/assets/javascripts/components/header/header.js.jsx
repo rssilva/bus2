@@ -1,11 +1,29 @@
 BUS2.Header = React.createClass({
+
+  getInitialState: function() {
+    return {
+      isMenuOpen: false
+    };
+  },
+
   menuHandler: function() {
-    BUS2.mainContainer.find('.bus2-header').removeClass('select-search').addClass('select-menu');
+    BUS2.mainContainer.find('.bus2-header').toggleClass('select-menu');
+    
+    var isMenuOpen = this.state.isMenuOpen;
+
+    if (isMenuOpen) {
+      ReactDOM.unmountComponentAtNode($('.bus2-nav')[0]);
+      this.setState({isMenuOpen: false});
+    } else {
+      ReactDOM.render(<BUS2.Nav />, $('.bus2-nav')[0]);
+      this.setState({isMenuOpen: true});
+    }
+
     return false;
   },
 
   pinAlertHandler: function() {
-    BUS2.mainContainer.find('.bus2-header').addClass('select-search').removeClass('select-menu');
+    BUS2.mainContainer.find('.bus2-header').toggleClass('select-search');
     return false;
   },
 
