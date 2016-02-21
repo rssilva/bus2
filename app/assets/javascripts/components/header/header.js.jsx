@@ -1,30 +1,65 @@
 BUS2.Header = React.createClass({
 
+  bindEvents: function() {
+    var that = this;
+
+    $(window).on('bus2::closeMenu', function() {
+      that.closeMenu();
+    });
+  },
+
+  componentDidMount: function() {
+    this.bindEvents();
+  },
+
   getInitialState: function() {
     return {
-      isMenuOpen: false
+      isMenuOpen: false,
+      isSearchSelected: false
     };
   },
 
-  menuHandler: function() {
+  openMenu: function() {
+    if (this.state.isSearchSelected) {
+      BUS2.mainContainer.find('.bus2-header').removeClass('select-search');
+      this.setState({isSearchSelected:false});
+    }
+
+    ReactDOM.render(<BUS2.Nav />, $('.bus2-nav')[0]);
+    this.setState({isMenuOpen: true});
+    BUS2.mainContainer.find('.bus2-nav').addClass('on');      
     BUS2.mainContainer.find('.bus2-header').toggleClass('select-menu');
-    
+  },
+
+  closeMenu: function() {
+    this.setState({isMenuOpen: false});
+    BUS2.mainContainer.find('.bus2-nav').removeClass('on');
+    BUS2.mainContainer.find('.bus2-header').toggleClass('select-menu');
+  },
+
+  menuHandler: function() {
     var isMenuOpen = this.state.isMenuOpen;
 
     if (isMenuOpen) {
-      ReactDOM.unmountComponentAtNode($('.bus2-nav')[0]);
-      this.setState({isMenuOpen: false});
+      this.closeMenu();
     } else {
-      ReactDOM.render(<BUS2.Nav />, $('.bus2-nav')[0]);
-      this.setState({isMenuOpen: true});
+      this.openMenu();
     }
-
-    return false;
   },
 
   pinAlertHandler: function() {
-    BUS2.mainContainer.find('.bus2-header').toggleClass('select-search');
-    return false;
+    if (this.state.isMenuOpen) {
+      this.closeMenu();
+    }
+    
+    if (this.state.isSearchSelected) {
+      BUS2.mainContainer.find('.bus2-header').removeClass('select-search');
+      this.setState({isSearchSelected:false});
+    } else {
+      BUS2.mainContainer.find('.bus2-header').addClass('select-search');
+      this.setState({isSearchSelected:true});
+    }
+
   },
 
   render: function () {
