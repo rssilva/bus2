@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   include RestApiConcerns
 
+  before_action :authenticate, except: [:create, :facebook], if: "Rails.env.production? || Rails.env.development?"
+
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -30,19 +32,6 @@ class UsersController < ApplicationController
       else
         self.create unless User.find_by_facebook_id(@fb_params[:facebook_id])
       end
-  end
-
-  def login
-    if params[:user][:email].nil? || params[:user][:password].nil?
-        head :unprocessable_entity
-    end
-
-    user = User.find_by(email: params[:user][:email]).try(:authenticate, params[:user][:password])
-    if user
-      render json: user, :except => [:password_digest, :facebook_id], status: :ok
-    else
-      head :unauthorized
-    end
   end
 
   # POST /users

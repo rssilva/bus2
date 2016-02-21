@@ -1,5 +1,6 @@
 class LinesController < ApplicationController
   include RestApiConcerns
+  before_action :authenticate, if: "Rails.env.production? || Rails.env.development?"
   before_action :set_line, only: [:show, :edit, :update, :destroy]
 
   # GET /lines
