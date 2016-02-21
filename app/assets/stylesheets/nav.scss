@@ -12,4 +12,150 @@
     @include transition(all .3s $ease-out-quart);
     @include transform(translateY(0));
   }
+
+
+  .bus2-nav-links {
+    margin: 20px auto;
+    display: table;
+    height: 55px;
+    
+    li {
+      display: inline-block;
+      height: 100%;
+      line-height: 55px;
+      list-style: none;
+
+      a {
+        color: #fff;
+        text-decoration: none;
+        border-right: 1px solid #fff;
+        padding-right: 7px;
+        margin-right: 7px;
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+
+        a {
+          border-right: none;
+        }
+      }
+
+      a.select {
+        color: #40ff83;
+      }
+
+      .bus2-alert-btn {
+        border-radius: 5px;
+        background-color: #ffb11a;
+        padding: 0 5px;
+      }
+    }
+  }
+
+
+  .bus2-steps {
+    display: table;
+    margin: 30px auto;
+    padding: 0 20px;
+
+    li {
+      float: left;
+      max-width: 33%;
+      height: 100%;
+      text-align: center;
+      list-style: none;
+      color: #fff;
+      position: relative;
+
+
+      .circle-step {
+        margin: 0 auto;
+        width: 74px;
+        height: 74px;
+        border-radius: 50%;
+        background-color: #fff;
+        margin-bottom: 10px;
+      }
+
+      span {
+        display: block;
+        width: 85%;
+        margin: 0 auto;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+    }
+  }
+
+
+  .headline {
+    display: block;
+    width: 75%;
+    margin: 0 auto;
+    text-align: center;
+    color: #fff;
+    @include font('montserrat-bold');
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  .search-btn {
+    position: relative;
+    display: block;
+    margin: 20px auto;
+    width: 210px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 18px / 20px;
+    color: #fff;
+    outline: none;
+    background-color: #1ce061;
+    font-size: 14px;
+    text-transform: uppercase;
+    border: 0;
+
+    span {
+      margin-left: -23px;
+      margin-right: 7px;
+    }
+
+    svg {
+      width: 30px;
+      height: 30px;
+      fill: #fff;
+      @include align-vertically();
+      position: absolute;
+    }
+
+    &:active {
+      outline: none;
+    }
+  }
+
+  .bus2-nav-close {
+    display: block;
+    margin: 0 auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    color: #fff;
+    line-height: 37px;
+    text-decoration: none;
+    text-align: center;
+  }
+
+
+
+
+
+
 }
