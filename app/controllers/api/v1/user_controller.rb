@@ -17,6 +17,8 @@ module Api
         lnRoute = LineRouteLog.new({:line_id => ln.id, :user_id => current_user.id})
         lnRoute.update_location(permited_params[:lat].to_f,permited_params[:lat].to_f)
         lnRoute.__elasticsearch__.index_document
+
+        render json: lnRoute, status: :ok
       end
 
       def location_retrieve
