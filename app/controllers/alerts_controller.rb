@@ -1,4 +1,6 @@
 class AlertsController < ApplicationController
+  include RestApiConcerns
+
   before_action :set_alert, only: [:show, :edit, :update, :destroy]
 
   # GET /alerts
@@ -7,18 +9,9 @@ class AlertsController < ApplicationController
     @alerts = Alert.all
   end
 
-  # GET /alerts/1
-  # GET /alerts/1.json
+  # GET /lines/1
+  # GET /lines/1.json
   def show
-  end
-
-  # GET /alerts/new
-  def new
-    @alert = Alert.new
-  end
-
-  # GET /alerts/1/edit
-  def edit
   end
 
   # POST /alerts
@@ -26,39 +19,28 @@ class AlertsController < ApplicationController
   def create
     @alert = Alert.new(alert_params)
 
-    respond_to do |format|
       if @alert.save
-        format.html { redirect_to @alert, notice: 'Alert was successfully created.' }
-        format.json { render :show, status: :created, location: @alert }
+        render json: @alert, status: :created
       else
-        format.html { render :new }
-        format.json { render json: @alert.errors, status: :unprocessable_entity }
+        render json: @alert.errors, status: :unprocessable_entity
       end
-    end
   end
 
   # PATCH/PUT /alerts/1
   # PATCH/PUT /alerts/1.json
   def update
-    respond_to do |format|
       if @alert.update(alert_params)
-        format.html { redirect_to @alert, notice: 'Alert was successfully updated.' }
-        format.json { render :show, status: :ok, location: @alert }
+        render json: @alert, status: :ok
       else
-        format.html { render :edit }
-        format.json { render json: @alert.errors, status: :unprocessable_entity }
+        render json: @alert.errors, status: :unprocessable_entity
       end
-    end
   end
 
   # DELETE /alerts/1
   # DELETE /alerts/1.json
   def destroy
     @alert.destroy
-    respond_to do |format|
-      format.html { redirect_to alerts_url, notice: 'Alert was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+       head :no_content
   end
 
   private

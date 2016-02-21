@@ -44,7 +44,7 @@ RSpec.describe LinesController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #index" do
-    it "assigns all lines as @lines", pamonha:true do
+    it "assigns all lines as @lines" do
       Line.destroy_all
       line = Line.create! valid_attributes
       get :index, {}, valid_session
@@ -57,13 +57,6 @@ RSpec.describe LinesController, type: :controller do
       line = Line.create! valid_attributes
       get :show, {:id => line.to_param}, valid_session
       expect(assigns(:line)).to eq(line)
-    end
-  end
-
-  describe "GET #new" do
-    it "assigns a new line as @line" do
-      get :new, {}, valid_session
-      expect(assigns(:line)).to be_a_new(Line)
     end
   end
 
@@ -89,9 +82,9 @@ RSpec.describe LinesController, type: :controller do
         expect(assigns(:line)).to be_persisted
       end
 
-      it "redirects to the created line" do
+      it "returns created code" do
         post :create, {:line => valid_attributes}, valid_session
-        expect(response).to redirect_to(Line.last)
+        expect(response).to have_http_status(:created)
       end
     end
 
@@ -101,9 +94,9 @@ RSpec.describe LinesController, type: :controller do
         expect(assigns(:line)).to be_a_new(Line)
       end
 
-      it "re-renders the 'new' template" do
+      it "returns unprocessable_entity code" do
         post :create, {:line => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -128,10 +121,10 @@ RSpec.describe LinesController, type: :controller do
         expect(assigns(:line)).to eq(line)
       end
 
-      it "redirects to the line" do
+      it "returns ok" do
         line = Line.create! valid_attributes
         put :update, {:id => line.to_param, :line => valid_attributes}, valid_session
-        expect(response).to redirect_to(line)
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -142,10 +135,10 @@ RSpec.describe LinesController, type: :controller do
         expect(assigns(:line)).to eq(line)
       end
 
-      it "re-renders the 'edit' template" do
+      it "returns unprocessable_entity" do
         line = Line.create! valid_attributes
         put :update, {:id => line.to_param, :line => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -158,10 +151,10 @@ RSpec.describe LinesController, type: :controller do
       }.to change(Line, :count).by(-1)
     end
 
-    it "redirects to the lines list" do
+    it "returns no_content code" do
       line = Line.create! valid_attributes
       delete :destroy, {:id => line.to_param}, valid_session
-      expect(response).to redirect_to(lines_url)
+      expect(response).to have_http_status(:no_content)
     end
   end
 

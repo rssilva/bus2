@@ -53,21 +53,6 @@ RSpec.describe ScoresController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new score as @score" do
-      get :new, {}, valid_session
-      expect(assigns(:score)).to be_a_new(Score)
-    end
-  end
-
-  describe "GET #edit" do
-    it "assigns the requested score as @score" do
-      score = Score.create! valid_attributes
-      get :edit, {:id => score.to_param}, valid_session
-      expect(assigns(:score)).to eq(score)
-    end
-  end
-
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Score" do
@@ -99,21 +84,22 @@ RSpec.describe ScoresController, type: :controller do
         expect(assigns(:score)).to be_persisted
       end
 
-      it "redirects to the created score" do
+      it "returns created code" do
         post :create, {:score => valid_attributes}, valid_session
-        expect(response).to redirect_to(Score.last)
+        expect(response).to have_http_status(:created)
       end
     end
 
     context "with invalid params" do
-      it "assigns a newly created but unsaved score as @score" do
-        post :create, {:score => invalid_attributes}, valid_session
-        expect(assigns(:score)).to be_a_new(Score)
+      it "should not persist user" do
+        expect {
+          post :create, {:score => invalid_attributes}, valid_session
+        }.to change(Score, :count).by(0)
       end
 
-      it "re-renders the 'new' template" do
+      it "returns unprocessable_entity" do
         post :create, {:score => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -126,10 +112,10 @@ RSpec.describe ScoresController, type: :controller do
       }.to change(Score, :count).by(-1)
     end
 
-    it "redirects to the scores list" do
+    it "returns no_content" do
       score = Score.create! valid_attributes
       delete :destroy, {:id => score.to_param}, valid_session
-      expect(response).to redirect_to(scores_url)
+      expect(response).to have_http_status(:no_content)
     end
   end
 
