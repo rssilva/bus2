@@ -4,4 +4,12 @@
   right: 0;
   left: 0;
   bottom: 0;
+  height: calc(100% - 120px);
+  margin-top: 60px;
+}
+
+@media only screen and (min-width:376px) {
+  .map-canvas {
+    margin-bottom: 0;
+  }
 }

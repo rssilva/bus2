@@ -59,6 +59,9 @@ gem 'jwt' #API Auth
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
+#Geocode
+gem 'geocoder'
+
 group :test do
   gem 'elasticsearch-extensions'
 end

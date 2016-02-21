@@ -2,17 +2,32 @@ module Api
   module V1
     class UserController < ApiApplicationController
 
+      before_action :authenticate
+
+      require 'geocoder'
+
       include RestApiConcerns
 
-
       def location_push
+        city = City.where('name = ?', 'Porto Alegre').first
+        ln  = Line.find_or_create_by({:name => permited_params[:line_name], :city_id => city.id})
+        ln.add_user(permited_params[:lat].to_f,permited_params[:lat].to_f, current_user.id)
+        ln.__elasticsearch__.index_document
 
+        lnRoute = LineRouteLog.new({:line_id => ln.id, :user_id => current_user.id})
+        lnRoute.update_location(permited_params[:lat].to_f,permited_params[:lat].to_f)
+        lnRoute.__elasticsearch__.index_document
+      end
+
+      def location_retrieve
+        results = Geocoder.search([permited_params[:lat].to_f,permited_params[:lon].to_f])
+        render json: results, status: :ok
       end
 
       private
 
       def permited_params
-        params.permit(:letters, :name, :country_id, :uf, :format)
+        params.permit(:lat, :lon, :line_name)
       end
     end
   end

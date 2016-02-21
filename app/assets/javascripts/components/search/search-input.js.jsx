@@ -44,7 +44,7 @@ BUS2.SearchInput = React.createClass({
 
   getList: function (items) {
     return (
-      <ul className="input-list-data">
+      <ul className="input-list-data hidden">
         {this.parseItems(items)}
       </ul>
     );
