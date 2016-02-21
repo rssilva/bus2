@@ -63,4 +63,10 @@
     })
   }
 
+  function getBusData () {
+    $.ajax({
+      url: ''
+    })
+  }
+
 })();

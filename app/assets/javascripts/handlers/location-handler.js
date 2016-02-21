@@ -4,11 +4,11 @@
       this.isAvailable = 'geolocation' in navigator;
 
       if (this.isAvailable) {
-        console.log('geolocation is available')
+        
       }
 
       if (!this.isAvailable) {
-        console.log('geolocation is not available');
+        
       }
     },
 
