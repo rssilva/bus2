@@ -15,6 +15,7 @@
 
   BUS2.LocationHandler.getCurrentPosition(function (lat, lng) {
     BUS2.MapComponent.setCenter({lat: lat, lng: lng});
+    BUS2.MapComponent.setUserMarker(lat, lng);
   });
 
 })();

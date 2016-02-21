@@ -11,6 +11,15 @@
       this.map.setCenter(lat, lng);
     },
 
+    setUserMarker: function (lat, lng) {
+      var position = {lat: lat, lng: lng};
+
+      this.userMarker = new google.maps.Marker({
+        position: position,
+        map: this.map,
+      });
+    },
+
     render: function () {
 
     }
