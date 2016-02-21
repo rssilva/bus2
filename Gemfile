@@ -55,6 +55,11 @@ gem 'react-rails'
 
 gem 'bcrypt'
 
+#API REST
+gem 'rabl'
+gem 'jwt' #API Auth
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
