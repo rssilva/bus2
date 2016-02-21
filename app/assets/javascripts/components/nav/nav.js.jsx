@@ -13,14 +13,16 @@ BUS2.Nav = React.createClass({
   navLinksHandler: function(event) {
     var $el = $(event.target);
 
-    if ($el.hasClass('about')) {
-      this.setState({ position: 'bus2-nav-content about' })
-    } else if ($el.hasClass('how-it-works')) {
-      this.setState({ position: 'bus2-nav-content how-it-works' })
-    }
+    if (!$el.hasClass('select')) {
+      if ($el.hasClass('about')) {
+        this.setState({ position: 'bus2-nav-content about' })
+      } else if ($el.hasClass('how-it-works')) {
+        this.setState({ position: 'bus2-nav-content how-it-works' })
+      }
 
-    BUS2.mainContainer.find('.bus2-nav-links .about').toggleClass('select');
-    BUS2.mainContainer.find('.bus2-nav-links .how-it-works').toggleClass('select');
+      BUS2.mainContainer.find('.bus2-nav-links .about').toggleClass('select');
+      BUS2.mainContainer.find('.bus2-nav-links .how-it-works').toggleClass('select');
+    }
   },
 
   navLinkAlertHandler: function() {
