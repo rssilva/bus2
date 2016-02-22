@@ -33,9 +33,9 @@ BUS2.Nav = React.createClass({
     return (
       <div>
         <ul className="bus2-nav-links">
-          <li><a className="about select" onClick={this.navLinksHandler}>A empresa</a></li>
-          <li><a className="how-it-works" onClick={this.navLinksHandler}>Como funciona</a></li>
-          <li><a onClick={this.navLinkAlertHandler} className="bus2-alert-btn">Bus alerta</a></li>
+          <li><a className="about select" onClick={this.navLinksHandler}>About Us</a></li>
+          <li><a className="how-it-works" onClick={this.navLinksHandler}>How it Works</a></li>
+          <li><a onClick={this.navLinkAlertHandler} className="bus2-alert-btn">Bus alert</a></li>
         </ul>
 
         <div className={this.state.position}>
