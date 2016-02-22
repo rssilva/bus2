@@ -20,8 +20,14 @@
       });
     },
 
-    onStartClick: function () {
+    // onStartClick: function () {
+    //   Eventer.trigger('contributeStartClick', {busLine: this.state.busLine});
+    // },
+
+    onSubmitForm: function (ev) {
       Eventer.trigger('contributeStartClick', {busLine: this.state.busLine});
+
+      ev.preventDefault();
     },
 
     onBusLineChange: function (ev) {
@@ -38,7 +44,7 @@
 
     render: function () {
       return (
-        <div className={this.state.className}>
+        <form className={this.state.className} onSubmit={this.onSubmitForm}>
           <div>
             <span className="main-label">Informe sua posição e ajude outros usuários</span>
             <span className="location"></span>
@@ -46,10 +52,8 @@
           <div>
             <input className="busline" placeholder="Selecione uma linha" onChange={this.onBusLineChange}></input>
           </div>
-          <button className="start-contribute-button" onClick={this.onStartClick}>
-            Start
-          </button>
-        </div>
+          <input className="start-contribute-button" type="submit" value="start"></input>
+        </form>
       )
     }
   });

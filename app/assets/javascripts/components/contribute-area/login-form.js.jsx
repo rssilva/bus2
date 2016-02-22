@@ -35,6 +35,7 @@
     },
 
     onLoginSuccess: function (data) {
+      window.localStorage.setItem('TOKEN', data.jwt)
       Eventer.trigger('loginSuccessful', {jwt: data.jwt});
     },
 
