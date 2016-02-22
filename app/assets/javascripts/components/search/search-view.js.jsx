@@ -237,15 +237,15 @@ BUS2.SearchView = React.createClass({
           <h2>Find your bus</h2>
           <form action="" onSubmit={this.searchHandler}>
             <div className="input-wrapper">
-              <BUS2.SearchInput className="search-input" id="country" placeholder="Selecione um país" name="country" onClick={this.onClickInput} onKeyUp={this.onKeyUpHandler} />
+              <BUS2.SearchInput className="search-input" id="country" placeholder="Country" name="country" onClick={this.onClickInput} onKeyUp={this.onKeyUpHandler} />
               { this.state.listCountry }
             </div>
             <div className="input-wrapper">
-              <BUS2.SearchInput className="search-input" id="state" placeholder="Selecione um estado" name="state" onClick={this.onClickInput} onKeyUp={this.onKeyUpHandler} />
+              <BUS2.SearchInput className="search-input" id="state" placeholder="State" name="state" onClick={this.onClickInput} onKeyUp={this.onKeyUpHandler} />
               { this.state.listState }
             </div>
             <div className="input-wrapper">
-              <BUS2.SearchInput className="search-input" id="city" placeholder="Selecione uma cidade" name="city" onClick={this.onClickInput} onKeyUp={this.onKeyUpHandler} />
+              <BUS2.SearchInput className="search-input" id="city" placeholder="City" name="city" onClick={this.onClickInput} onKeyUp={this.onKeyUpHandler} />
               { this.state.listCities }
             </div>
 

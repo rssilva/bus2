@@ -56,7 +56,7 @@
           <input className="password"></input>
           <span className="label">Confirm Password:</span>
           <input className="password-confirmation"></input>
-          <input type="submit" value="Register"/>
+          <input type="submit" value="Sign Up"/>
         </form>
       );
     }

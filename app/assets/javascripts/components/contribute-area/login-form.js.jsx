@@ -59,10 +59,10 @@
             <input className="email"></input>
             <span className="label">Password:</span>
             <input className="password" type="password"></input>
-            <input className="submit-button" type="submit" value="Login"/>
+            <input className="submit-button" type="submit" value="Sign in"/>
           </form>
           <button className="register-contribute-button" onClick={this.onRegisterClick}>
-            Register
+            Sign Up
           </button>
         </div>
       );

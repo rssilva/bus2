@@ -47,11 +47,11 @@
         <div>
           <form className={this.state.className} onSubmit={this.onSubmitForm}>
             <div>
-              <span className="main-label">Informe sua posição e ajude outros usuários</span>
+              <span className="main-label">Share your position and help other users</span>
               <span className="location"></span>
             </div>
             <div>
-              <input className="busline" placeholder="Selecione uma linha" onChange={this.onBusLineChange}></input>
+              <input className="busline" placeholder="Select a bus line" onChange={this.onBusLineChange}></input>
             </div>
             <input className="start-contribute-button" type="submit" value="start"></input>
           </form>

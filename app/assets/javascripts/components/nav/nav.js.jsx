@@ -35,7 +35,7 @@ BUS2.Nav = React.createClass({
         <ul className="bus2-nav-links">
           <li><a className="about select" onClick={this.navLinksHandler}>About Us</a></li>
           <li><a className="how-it-works" onClick={this.navLinksHandler}>How it Works</a></li>
-          <li><a onClick={this.navLinkAlertHandler} className="bus2-alert-btn">Bus alert</a></li>
+          
         </ul>
 
         <div className={this.state.position}>
@@ -47,31 +47,30 @@ BUS2.Nav = React.createClass({
               <p>Its not hard to remember a day when you were sure about the timetable, left accordingly, just to watch on your way to the bus stop, your bus passing a few minutes ahead of schedule.</p>
               <p>Knowing that millions have that routine and leaving this problem to be solved by local government is a recipe for frustration, we decided to solve that productivity problem by using the power of collaboration, amped by technology.</p>
               <p>With BUS2 people will be able to pinpoint their intended bus location in real time and plan accordingly.</p>
-              <p>It’s also possible to set up alerts that will warn you, according to your routine, when it’s time to head to the bus stop.</p>
               <p>In order for that to be possible, people who catch a bus, will collaborate by sharing in real time the location of the bus that's being used, and in exchange, being rewarded for that.</p>
-              <p>As an alternative, in case there's no real time update for the bus that's being searched for, we will still present you with the official timetable. </p>
+              <p>In the next version the user will be able to set up alerts that will warn them, according to their routine, when it’s time to head to the bus stop.</p>
             </div>
           </div>
           <div className="bus2-nav-content-how-it-works">
             <ul className="bus2-steps">
               <li>
-                <div className="circle-step"></div>
-                <span>Indique sua localização</span>
+                <div className="circle-step">1</div>
+                <span>Select the bus you need to catch</span>
               </li>
               <li>
-                <div className="circle-step"></div>
-                <span>Localize um ou mais ônibus</span>
+                <div className="circle-step">2</div>
+                <span>Check your bus ETA at the nearest bus stop in real time</span>
               </li>
               <li>
-                <div className="circle-step"></div>
-                <span>Colabore quando pegar seu ônibus</span>
+                <div className="circle-step">3</div>
+                <span>Help other people by sharing that bus location</span>
               </li>
             </ul>
             <strong className="headline">
-              Não fique mais parado esperando seu ônibus. Faça uma busca e descubra em tempo real a localização do seu ônibus.
+              Never miss your bus again! know its location in real time.
             </strong>        
             <button className="search-btn">
-              Fazer uma busca
+              Where is my bus?
               <svg className="search">
                 <use xlinkHref="#search"></use>
               </svg>
