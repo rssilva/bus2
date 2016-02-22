@@ -25,16 +25,6 @@ BUS2.SearchView = React.createClass({
 
   },
 
-  resolveAddressUser: function(coords) {
-    var lat = coords.latitude;
-    var lon = coords.longitude;
-    var url = this.addressAPI.replace('{lat}', lat).replace('{lon}', lon);
-
-    $.get(url, function(data){
-      console.log(data);
-    });
-  },
-
   shareGPS: function() {
     var that = this;
 
@@ -187,8 +177,6 @@ BUS2.SearchView = React.createClass({
               <BUS2.SearchInput className="search-input" id="city" placeholder="Selecione uma cidade" name="city" onClick={this.onClickInput} onKeyUp={this.onKeyUpHandler} />
               { this.state.listCities }
             </div>
-
-            <a className="share-gps" onClick={this.shareGPS}>Compartilhe sua localização</a>
 
             <BUS2.SearchInput className="search-input" id="line" placeholder="SELECIONE UMA LINHA" name="line" />
 
