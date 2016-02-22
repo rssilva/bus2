@@ -19,6 +19,11 @@
     BUS2.MapComponent.setUserMarker(lat, lng);
   });
 
+  BUS2.Eventer.on('lineResultClick', function(event, data){
+    console.log(data);
+    // BUS2.MapComponent
+  });
+
   var busLine;
   
   BUS2.Eventer.on('loginSuccessful', function (ev, data) {

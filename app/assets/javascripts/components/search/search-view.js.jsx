@@ -3,6 +3,7 @@ BUS2.SearchView = React.createClass({
   stateAPI: '/api/v1/state/find/country_id/',
   cityAPI: '/api/v1/city/find/state_id/',
   addressAPI: '/api/v1/user/location/retrieve/sensor?lat={lat}&lon={lon}',
+  linesAPI: '/api/v1/line_search/search/country_id/state_id/city_id',
 
   getInitialState: function() {
     return {
@@ -12,7 +13,9 @@ BUS2.SearchView = React.createClass({
       citySelected: null,
       listCountry: this.getList('country', []),
       listState: this.getList('state', []),
-      listCities: this.getList('city', [])
+      listCities: this.getList('city', []),
+      linesList: [],
+      linesListEl: this.getLinesEl([])
     };
   },
 
@@ -113,8 +116,75 @@ BUS2.SearchView = React.createClass({
       input = $('input#city');
       input.val(value);
       this.setState({listCities: []});
-      this.setState({citySelected: id});
+      this.setState({citySelected: id}, function() {
+        that.fetchLines();
+      });
+
     }
+  },
+
+  fetchLines: function() {
+    this.getLines();
+    // this.setState({linesList: this.getLines()});
+  },
+
+  getLines: function() {
+    var url = this.linesAPI.replace('country_id', this.state.countrySelected).replace('state_id', this.state.stateSelected).replace('city_id', this.state.citySelected);
+    var that = this;
+
+    $.get(url, function(data){
+      console.log(data);
+
+      if (data) {
+        that.onLinesData(data)
+        // return (
+        //   <ul className="blabla">
+        //     {that.parseLines(data.hits.hits)}
+        //   </ul>
+        // )
+      } else {
+        return;
+      }
+    });
+
+  },
+
+  getLinesEl: function (data) {
+    var hits = [];
+
+    if (data && data.hits && data.hits.hits) {
+      hits = data.hits.hits;
+    }
+    console.log(hits)
+    return (
+      <ul className="blabla">
+        {this.parseLines(hits)}
+      </ul>
+    )
+  },
+
+  onLinesData: function (data) {
+    this.setState({linesListEl: this.getLinesEl(data)});
+  },
+
+  lineClickHandler: function(e) {
+    var el = $(e.target).parent()[0];
+    var id = el.getAttribute('id');
+
+    BUS2.Eventer.trigger('lineResultClick', {id:id});
+  },
+
+  parseLines: function (items) {
+    var that = this;
+
+    return items.map(function(item){
+      console.log(item._id)
+      return (
+        <li key={item._id} id={item._id} onClick={that.lineClickHandler}>
+          <span>{item._source.name}</span>
+        </li>
+      )
+    });
   },
 
   parseItems: function (items) {
@@ -178,13 +248,13 @@ BUS2.SearchView = React.createClass({
               { this.state.listCities }
             </div>
 
-            <BUS2.SearchInput className="search-input" id="line" placeholder="SELECIONE UMA LINHA" name="line" />
+            <div className="lines-list">
+              { this.state.linesListEl }
+            </div>
 
             <div className="bus-line-wrapper">
               <BUS2.SearchBusLineSelect busLineNumber="343" busLineName="Ipiranga Puc" />
             </div>
-
-            <input type="submit" className="search-go" value="Buscar" />
           </form>
         </div>
       </div>
