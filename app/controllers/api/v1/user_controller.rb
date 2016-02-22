@@ -18,15 +18,19 @@ module Api
 
         queryES[:filter] = {
             :geo_distance => {
-                :distance => "10m",
+                :distance => "20km",
                 "users_reporting.location" => [permited_params[:lat].to_f, permited_params[:lon].to_f]
             }
         }
-        result = ln.search_by queryES
-        result.response
-
+        result = Line.search_for(queryES)
+        lnR = result.response['hits']['hits'].first
+        lnR['_source']['users_reporting'].each{|r|
+          if r['user_id'].to_i != current_user.id
+            ln.add_user(r['location'][0].to_f,r['location'][1].to_f, r['user_id'])
+          end
+        }
         ln.add_user(permited_params[:lat].to_f,permited_params[:lon].to_f, current_user.id)
-        ln.__elasticsearch__.index_document
+        ln.__elasticsearch__.update_document
 
         lnRoute = LineRouteLog.new({:line_id => ln.id, :user_id => current_user.id})
         lnRoute.update_location(permited_params[:lat].to_f,permited_params[:lon].to_f)
