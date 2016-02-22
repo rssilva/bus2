@@ -68,13 +68,16 @@ BUS2.Nav = React.createClass({
             </ul>
             <strong className="headline">
               Never miss your bus again! know its location in real time.
-            </strong>        
+            </strong>
             <button className="search-btn">
               Where is my bus?
               <svg className="search">
                 <use xlinkHref="#search"></use>
               </svg>
             </button>
+            <strong className="headline">
+              Check our <a href="https://www.youtube.com/channel/UCsnfZ1-62EKqIHnUiycpICQ">demonstration video</a>
+            </strong>
           </div>
         </div>
 
