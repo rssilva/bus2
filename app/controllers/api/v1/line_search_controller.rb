@@ -36,6 +36,19 @@ module Api
         render json: result.response, status: :ok
       end
 
+      def line_instances
+        queryES = {}
+        if !permited_params[:line_id].nil?
+          queryES[:query] = {
+              :bool => {
+                  :must => []
+              }
+          }
+          queryES[:query][:bool][:must] << {:match => { "id" => {:query => permited_params[:line_id], :operator => 'and'}}}
+        end
+        result = Line.search_for(queryES)
+        render json: result.response, status: :ok
+      end
 
       private
 

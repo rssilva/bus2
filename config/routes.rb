@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
       resource :line_search do
         get 'search/:country/:state/:city', controller: 'line_search', action: :search_lines
+        get 'lines/:line_id', controller: 'line_search', action: :line_instances
       end
 
       resource :user do

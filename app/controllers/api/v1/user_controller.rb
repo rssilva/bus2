@@ -9,8 +9,22 @@ module Api
       include RestApiConcerns
 
       def location_push
+        queryES = {}
+
+        # city = City.where('id = ?', permited_params[:city_id]).first
         city = City.where('name = ?', 'Porto Alegre').first
         ln  = Line.find_or_create_by({:name => permited_params[:line_name], :city_id => city.id})
+
+
+        queryES[:filter] = {
+            :geo_distance => {
+                :distance => "10m",
+                "users_reporting.location" => [permited_params[:lat].to_f, permited_params[:lon].to_f]
+            }
+        }
+        result = ln.search_by queryES
+        result.response
+
         ln.add_user(permited_params[:lat].to_f,permited_params[:lon].to_f, current_user.id)
         ln.__elasticsearch__.index_document
 
