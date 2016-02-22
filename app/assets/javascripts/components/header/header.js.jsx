@@ -10,6 +10,10 @@ BUS2.Header = React.createClass({
     BUS2.Eventer.on('contributeClick', function () {
       that.closeSearch();
     });
+
+    BUS2.Eventer.on('lineResultClick', function () {
+      that.closeSearch();
+    });
   },
 
   componentDidMount: function() {

@@ -19,12 +19,13 @@
     BUS2.MapComponent.setUserMarker(lat, lng);
   });
 
-  BUS2.Eventer.on('lineResultClick', function(event, data){
-    console.log(data);
-    // BUS2.MapComponent
-  });
-
   var busLine;
+  var interval;
+  var linesData;
+  var country;
+  var state;
+  var city;
+  var markersInterval;
   
   BUS2.Eventer.on('loginSuccessful', function (ev, data) {
     BUS2.TOKEN = data.jwt;
@@ -41,7 +42,31 @@
     busLine = data.busLine;
   });
 
-  var interval;
+  BUS2.Eventer.on('onLinesData', function (ev, data) {
+    linesData = data.linesData;
+  });
+
+  BUS2.Eventer.on('lineResultClick', function(event, data){
+    country = data.country;
+    state = data.state;
+    city = data.city;
+
+    BUS2.MapComponent.plotMarkers(linesData);
+    getLinesData();
+  });
+
+  function getLinesData () {
+    clearInterval(markersInterval);
+
+    markersInterval = setInterval(function () {
+      $.ajax({
+        url: '/api/v1/line_search/search/' + country + '/' + state + '/' + city
+      }).done(function (linesData) {
+        console.log('PLIM')
+        BUS2.MapComponent.plotMarkers(linesData);
+      })
+    }, 10000);
+  }
 
   function startColaborateData () {
     interval = setInterval(function () {
@@ -69,12 +94,6 @@
       }
     }).done(function (data) {
       console.log(data)
-    })
-  }
-
-  function getBusData () {
-    $.ajax({
-      url: ''
     })
   }
 

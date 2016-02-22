@@ -155,7 +155,7 @@ BUS2.SearchView = React.createClass({
     if (data && data.hits && data.hits.hits) {
       hits = data.hits.hits;
     }
-    console.log(hits)
+
     return (
       <ul className="blabla">
         {this.parseLines(hits)}
@@ -164,6 +164,8 @@ BUS2.SearchView = React.createClass({
   },
 
   onLinesData: function (data) {
+    BUS2.Eventer.trigger('onLinesData', {linesData: data});
+
     this.setState({linesListEl: this.getLinesEl(data)});
   },
 
@@ -171,14 +173,13 @@ BUS2.SearchView = React.createClass({
     var el = $(e.target).parent()[0];
     var id = el.getAttribute('id');
 
-    BUS2.Eventer.trigger('lineResultClick', {id:id});
+    BUS2.Eventer.trigger('lineResultClick', {id:id, country: this.state.countrySelected, state: this.state.stateSelected, city: this.state.citySelected});
   },
 
   parseLines: function (items) {
     var that = this;
 
     return items.map(function(item){
-      console.log(item._id)
       return (
         <li key={item._id} id={item._id} onClick={that.lineClickHandler}>
           <span>{item._source.name}</span>
@@ -233,7 +234,7 @@ BUS2.SearchView = React.createClass({
         </div>
 
         <div className="bus2-search-content">
-          <h2>Encontre seu ônibus em tempo real</h2>
+          <h2>Find your bus</h2>
           <form action="" onSubmit={this.searchHandler}>
             <div className="input-wrapper">
               <BUS2.SearchInput className="search-input" id="country" placeholder="Selecione um país" name="country" onClick={this.onClickInput} onKeyUp={this.onKeyUpHandler} />
