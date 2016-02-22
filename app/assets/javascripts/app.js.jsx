@@ -32,6 +32,11 @@
     startColaborateData();
   });
 
+  BUS2.Eventer.on('alreadyLogged', function (ev, data) {
+    sendColaborateData();
+    startColaborateData();
+  });
+
   BUS2.Eventer.on('contributeStartClick', function (ev, data) {
     busLine = data.busLine;
   });

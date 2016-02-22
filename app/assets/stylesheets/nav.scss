@@ -39,9 +39,19 @@
 
     .bus2-nav-content-about {
       color: #fff;
-      text-align: center;
-      text-transform: uppercase;
-      line-height: 350px;
+      // text-align: center;
+      // text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    .text-container {
+      margin: 0 20px 0 20px;
+      max-height: 300px;
+      overflow: auto;
+    }
+
+    .text-container p {
+      margin-bottom: 20px;
     }
   }
 

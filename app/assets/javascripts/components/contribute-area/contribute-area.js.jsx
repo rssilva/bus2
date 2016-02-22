@@ -46,6 +46,7 @@
         this.renderFirstForm(false);
         this.renderRegisterForm(false);
         this.renderLoginForm(false);
+        Eventer.trigger('alreadyLogged');
       }
 
       if (!BUS2.TOKEN) {
