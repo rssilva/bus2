@@ -24,11 +24,13 @@ module Api
         }
         result = Line.search_for(queryES)
         lnR = result.response['hits']['hits'].first
-        lnR['_source']['users_reporting'].each{|r|
-          if r['user_id'].to_i != current_user.id
-            ln.add_user(r['location'][0].to_f,r['location'][1].to_f, r['user_id'])
-          end
-        }
+        if !lnR.nil? and lnR.keys.include? '_source'
+          lnR['_source']['users_reporting'].each{|r|
+            if r['user_id'].to_i != current_user.id
+              ln.add_user(r['location'][0].to_f,r['location'][1].to_f, r['user_id'])
+            end
+          }
+        end
         ln.add_user(permited_params[:lat].to_f,permited_params[:lon].to_f, current_user.id)
         ln.__elasticsearch__.update_document
 
