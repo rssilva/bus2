@@ -19,11 +19,15 @@
     BUS2.MapComponent.setUserMarker(lat, lng);
   });
 
-  var busLine;
-  var TOKEN;
+  BUS2.Eventer.on('lineResultClick', function(event, data){
+    console.log(data);
+    // BUS2.MapComponent
+  });
 
+  var busLine;
+  
   BUS2.Eventer.on('loginSuccessful', function (ev, data) {
-    TOKEN = data.jwt;
+    BUS2.TOKEN = data.jwt;
     sendColaborateData();
     startColaborateData();
   });
@@ -51,7 +55,7 @@
       type: 'POST',
       url: '/api/v1/user/location/push/sensor',
       beforeSend: function (request) {
-        request.setRequestHeader('Authorization', TOKEN);
+        request.setRequestHeader('Authorization', BUS2.TOKEN);
       },
       data: {
         line_name: busLine,

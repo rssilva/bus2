@@ -194,4 +194,24 @@
     }
   }
 
+  .lines-list {
+    width: 255px;
+    margin: 10px auto;
+    max-height: 120px;
+    overflow-y: scroll;
+
+    li {
+      list-style: none;
+      display: table;
+      margin: 0 auto;
+      height: 30px;
+      line-height: 30px;
+      color: #fff;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-align: center;
+    }
+
+  }
+
 }
