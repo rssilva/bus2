@@ -56,7 +56,7 @@ module LineInstance
     #Attrs
 
     def last_updated
-      @last_update
+      DateTime.now
     end
 
 
