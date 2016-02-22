@@ -6,6 +6,10 @@ BUS2.Header = React.createClass({
     $(window).on('bus2::closeMenu', function() {
       that.closeMenu();
     });
+
+    BUS2.Eventer.on('contributeClick', function () {
+      that.closeSearch();
+    });
   },
 
   componentDidMount: function() {

@@ -44,16 +44,18 @@
 
     render: function () {
       return (
-        <form className={this.state.className} onSubmit={this.onSubmitForm}>
-          <div>
-            <span className="main-label">Informe sua posição e ajude outros usuários</span>
-            <span className="location"></span>
-          </div>
-          <div>
-            <input className="busline" placeholder="Selecione uma linha" onChange={this.onBusLineChange}></input>
-          </div>
-          <input className="start-contribute-button" type="submit" value="start"></input>
-        </form>
+        <div>
+          <form className={this.state.className} onSubmit={this.onSubmitForm}>
+            <div>
+              <span className="main-label">Informe sua posição e ajude outros usuários</span>
+              <span className="location"></span>
+            </div>
+            <div>
+              <input className="busline" placeholder="Selecione uma linha" onChange={this.onBusLineChange}></input>
+            </div>
+            <input className="start-contribute-button" type="submit" value="start"></input>
+          </form>
+        </div>
       )
     }
   });
