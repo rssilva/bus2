@@ -7,6 +7,7 @@
   margin-top: 60px;
   height: calc(100% - 120px);
   text-align: center;
+  opacity: 0.9;
   z-index: 1;
   @include transition(all .3s $ease-out-quart);
   // @include transform(translateY(-100%));
@@ -17,8 +18,8 @@
 
     .main-label {
       display: block;
-      width: 142px;
-      margin: 0 auto 15px auto;
+      width: 172px;
+      margin: 30% auto 15px auto;
       color: #fff;
       font-size: 15px;
     }
