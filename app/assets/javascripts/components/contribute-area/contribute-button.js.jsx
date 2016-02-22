@@ -29,7 +29,7 @@
               <svg className="contribute-bus">
                 <use xlinkHref="#contribute-bus"></use>
               </svg>
-              <span className="label">Contribute</span>
+              <span className="label">Colaborate</span>
             </button>
           </div>
         </div>

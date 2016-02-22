@@ -42,11 +42,13 @@
     },
 
     onStartClick: function () {
-      if (BUS2.isLogged) {
-
+      if (BUS2.TOKEN) {
+        this.renderFirstForm(false);
+        this.renderRegisterForm(false);
+        this.renderLoginForm(false);
       }
 
-      if (!BUS2.isLogged) {
+      if (!BUS2.TOKEN) {
         this.renderFirstForm(false);
         this.renderRegisterForm(false);
         this.renderLoginForm(true);
